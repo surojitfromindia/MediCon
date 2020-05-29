@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProjectIFPossible.ConnectionRouter.mySqlConnection">
+    <Position X="3.25" Y="1.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAAIAAAEAAAAEARAABARAIAAAAAAAAAEQBEGAAAAAEE=</HashCode>
+      <FileName>ConnectionRouter\mySqlConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectIFPossible.ConnectionRouter.MySqlClasses.MedicineDetails" Collapsed="true">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQAEAAAAAAQAAEAAAAABACAAEEAAAACAAAAAICAAAAA=</HashCode>
+      <FileName>ConnectionRouter\MySqlClasses\MedicineDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectIFPossible.ConnectionRouter.MySqlClasses.MySqlMedicineBatchEntry" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAIAAAAAACAAAAAAAEAAQAAAAAAAA=</HashCode>
+      <FileName>ConnectionRouter\MySqlClasses\MySqlMedicineBatchEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectIFPossible.ConnectionRouter.MySqlClasses.MySqlMedicineEntry" Collapsed="true">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IABQAAAgAAAAAAAAAIAAAAAAIAAAAAIACASAAQAAAQA=</HashCode>
+      <FileName>ConnectionRouter\MySqlClasses\MySqlMedicineEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectIFPossible.ConnectionRouter.MySqlClasses.MySqlUtil" Collapsed="true">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>ConnectionRouter\MySqlClasses\MySqlUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectIFPossible.ConnectionRouter.MySqlClasses.DuplicateRecordException" Collapsed="true">
+    <Position X="5.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConnectionRouter\MySqlClasses\Exception\DuplicateRecordException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectIFPossible.ConnectionRouter.MySqlClasses.NonRegisterNameException" Collapsed="true">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConnectionRouter\MySqlClasses\Exception\NonRegisterNameException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectIFPossible.ConnectionRouter.DataBaseConnectionBase" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>ConnectionRouter\DataBaseConnectionBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

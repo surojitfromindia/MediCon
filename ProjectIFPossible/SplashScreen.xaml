@@ -1,0 +1,44 @@
+﻿<Window x:Class="ProjectIFPossible.SplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectIFPossible"
+        mc:Ignorable="d"
+        Height="275.953" Width="433.272" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen">
+
+    <Grid Background="#FF1A2A40">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="60"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <WrapPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock Margin="0,10,0,0" FontSize="16"  Text="Medicine Invertory And Stuff Entry" Foreground="#FFDEF0E9"/>
+            </WrapPanel>
+            <ProgressBar x:Name="pbarFake" Grid.Row="2" Margin="0,20,0,20" Value="10"  Foreground="#FFFFD02F" Background="{x:Null}" BorderBrush="{x:Null}" />
+            <WrapPanel Orientation="Vertical" Grid.Row="1">
+                <TextBlock  Text="MedCon;-)" FontSize="69" Foreground="#FFFFD02F"/>
+                <TextBlock Margin="9,0,0,0" Text="A project by Surojit Paul" Foreground="#FFF0F0F0"/>
+                <TextBlock Margin="9,0,0,0" FontSize="9" Text="2020" Foreground="#FFF0F0F0"/>
+                <TextBlock Margin="9,0,0,0" FontSize="9" Text="Ver. 1.3" Foreground="#FFE4BA2B"/>
+
+            </WrapPanel>
+           
+        </Grid>
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#FF263A57"/>
+        
+    </Grid>
+    
+</Window>

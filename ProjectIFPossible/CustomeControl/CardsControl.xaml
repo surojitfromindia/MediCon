@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="ProjectIFPossible.CardsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectIFPossible"
+              mc:Ignorable="d" 
+             d:DesignHeight="180" d:DesignWidth="140"
+             MinHeight="126" MinWidth="102" IsTabStop="True" TabIndex="0">
+    <UserControl.Resources>
+        <Style x:Key="btnHover" TargetType="Button">
+            <Setter Property="Background" Value="#FF4E70AC"/>
+
+            <Setter Property="Foreground" Value="#FFCBE2F9"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                BorderThickness="0" BorderBrush="White" CornerRadius="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsPressed" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent"/>
+                            </Trigger>
+                            <Trigger  Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF3E3E81"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid x:Name="gdBack" MouseEnter="Grid_MouseEnter" MouseLeave="gdBack_MouseLeave">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="ImagG" Text="{Binding text, Mode=OneWay}" Foreground="{Binding textColor}" FontSize="35" Grid.Row="0" Width="Auto" Height="{Binding Width, ElementName=ImagG}" 
+                Padding="5,5,0,0" HorizontalAlignment="Left" />
+        <StackPanel Grid.Row="1">
+            <TextBlock  Text="{Binding Basic}"  Padding="10,3,0,3" FontSize="17"/>
+            <TextBlock  Text="{Binding descp}" FontSize="12" Padding="10,1,7,10" 
+                        TextWrapping="Wrap" Foreground="#FF747474" />
+        </StackPanel>
+        <WrapPanel Name="opPanel" Grid.Row="2" Width="auto" Margin="10" Visibility="Collapsed">
+            <Button Height="27" Click="detail_btn_Click" Style="{StaticResource btnHover}" Width="80"  Padding="6" Content="{Binding buttonText}"/>
+            <Button Height="27" Width="60" Style="{StaticResource btnHover}"   Click="refresh_btn_click"  Margin="5,0,0,0" Content="Refresh"/>
+        </WrapPanel>
+    </Grid>
+    
+</UserControl>

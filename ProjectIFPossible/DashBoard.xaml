@@ -1,0 +1,176 @@
+﻿<Window x:Class="ProjectIFPossible.DashBoard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectIFPossible"
+        xmlns:uc ="clr-namespace:ProjectIFPossible"
+        mc:Ignorable="d"
+        Title="DashBoard" Height="639" Width="1031.15" Foreground="#FFAA950C" WindowStartupLocation="CenterScreen" >
+
+    <Window.Resources>
+        <Style x:Key="btnHover" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF323268" Offset="0"/>
+                        <GradientStop Color="#FF323268" Offset="1"/>
+                        <GradientStop Color="#FF31315D" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#FFA0CFFF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                BorderThickness="0" BorderBrush="White" CornerRadius="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsPressed" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent"/>
+                            </Trigger>
+                            <Trigger  Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF3E3E81"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="btnRound" TargetType="Button">
+            <Setter Property="Background" Value="#FFB8AF04"/>
+            <Setter Property="Foreground" Value="#fff"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                BorderThickness="0" BorderBrush="White" CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsPressed" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent"/>
+                            </Trigger>
+                            <Trigger  Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF3E3E81"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="1"  VerticalScrollBarVisibility="Auto" Background="#FF072C6C">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Column="1" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Padding="10,0,0,0" Background="#FF072C6C">
+                        <TextBlock Text="Welcome"  FontSize="65" FontWeight="Thin" Foreground="#FFFFE645"/>
+                    </Label>
+                    <StackPanel  Grid.Column="1" Margin="5,0,15,0">
+                        <TextBlock FontSize="16" TextAlignment="Right" Text="Logged In as" FontWeight="Thin" Foreground="#FFC1AC23"/>
+                        <TextBlock x:Name="txtLogedInUser" FontSize="18" TextAlignment="Right" Text="Admin" Foreground="#FFC1AC23"/>
+                        <TextBlock FontSize="16" TextAlignment="Right" Text="Previlages" FontWeight="Thin" Foreground="#FFC1AC23"/>
+                        <TextBlock FontSize="18" TextAlignment="Right" Text="All" Foreground="#FFC1AC23"/>
+                        <WrapPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                            <TextBlock x:Name="onlineStatus" Margin="0,0,10,0" Text="Online" Foreground="#FFC1AC23" />
+                            <Ellipse x:Name="Sicon"  Width="10" Height="10" Fill="#FF00A007" />
+                        </WrapPanel>
+                    </StackPanel>
+                </Grid>
+                <WrapPanel Grid.Row="1"  Orientation="Horizontal"  Background="#FF072C6C">
+                    <uc:CardsControl x:Name="UCStock" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                  Height="159" Width="188" text="855" buttonText="New Entry"
+                                  detailBtnHadler="CardsControl_detailBtnHadler"
+                                  Basic="Medicine"  descp="currently in stock" Margin="20" IsTabStop="True" TabIndex="0" textColor="#FF0FDC76" Foreground="#FFEED42C"
+                                   
+                                   />
+                    <uc:CardsControl x:Name="UCMedi" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                 Height="159" Width="173" buttonText="New Entry" text="8"
+                                 detailBtnHadler="OneCard_UserControlClicked_1"
+                                 Basic="Type of Medicine" descp="currently in list" Margin="20" IsTabStop="True" TabIndex="1" Foreground="#FFEED42C" textColor="#FF0FDC76"  />
+
+                    <uc:CardsControl x:Name="UCList" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                Height="159" Width="179"
+                                 text="Details"
+                                     detailBtnHadler="UCList_detailBtnHadler"
+                                 Basic="Mesicine List Details" descp="currenty in stock" Margin="20" IsTabStop="True" TabIndex="2" Foreground="#FFEED42C" textColor="#FF0FDC76" />
+                </WrapPanel>
+                <StackPanel Grid.Row="2" Margin="0,0,0,0"  Background="#FF072C6C">
+                    <Button HorizontalAlignment="Left" Height="30" Margin="30,0,0,10" Width="92" Click="RefreshAllField" Content="Refresh" Style="{StaticResource btnHover}" Background="#FF4E70AC" Foreground="#FFCBE2F9" >
+                    </Button>
+                </StackPanel>
+                <WrapPanel Background="#FF153368" Orientation="Horizontal" Grid.Row="3" Grid.Column="1" >
+                    <uc:CardsControl VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                 text="238"
+                                 Basic="Stuff" descp="currently working" Margin="20" />
+                </WrapPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <Grid Grid.Column="0" x:Name="navBar"  Background="#FF2B2A2A">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnOpenSetting" Grid.Row="1" Content="Setting" Background="#FF4F4F4F" Padding="1" BorderBrush="{x:Null}" Foreground="White" Click="btnOpenSetting_Click" BorderThickness="0" />
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock MouseDown="TextBlock_MouseDown"  
+                               Foreground="#FFF5F9FF" FontSize="15" Padding="0,5,0,5" TextAlignment="Center">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90"/>
+                    </TextBlock.LayoutTransform>
+                        NavBar
+                </TextBlock>
+                <StackPanel x:Name="navBtnBar" Grid.Column="1">
+                    <Button Content="Disconnect" Click="Button_Click"/>
+                    <Button Content="Connect" Click="Button_Click_1" />
+                    <StackPanel Margin="10,60,10,0" VerticalAlignment="Center">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Login Another Account" Width="160"/>
+                            <TextBlock Grid.Row="1" Text="User" Margin="0,10,0,0" FontSize="10"/>
+                            <TextBox Grid.Row="2" FontSize="10" Padding="3"/>
+                            <TextBlock Grid.Row="3" Text="Password" Margin="0,5,0,0" FontSize="10"/>
+                            <PasswordBox Grid.Row="4" FontSize="10" Padding="3" />
+                            <Button Grid.Row="5" Style="{StaticResource btnRound}" HorizontalAlignment="Right" Width="70"  FontSize="9" Height="20" Content="LOG-IN" Margin="0,15,0,0"/>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

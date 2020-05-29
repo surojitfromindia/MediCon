@@ -1,0 +1,97 @@
+﻿<Window x:Class="ProjectIFPossible.MedicineBatchEntry"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectIFPossible"
+        xmlns:uc ="clr-namespace:ProjectIFPossible.MiniWindows"
+        mc:Ignorable="d"
+        Title="Medicine Batch Entry" Height="510" Width="1148" Background="#FF292929" Foreground="White" WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="30,0,0,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <TextBlock Text="Medicine Batch Entry" FontSize="26" Margin="0,6,0,10"/>
+                <TextBlock Text="Use this window to entry new medicine batch. you can only entry new batch here."/>
+                <TextBlock>
+                     For update and see batch details click "Show Batch Detail" Button.
+                </TextBlock>
+            </StackPanel>
+            <Grid Grid.Row="1" Margin="0,15,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="168"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Field Open"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Valid Field Entry"/>
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Field Saved"/>
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="(Not Valid)New Batch Found" />
+                <TextBlock Grid.Row="0" Grid.Column="4" Text="Duplicate"/>
+
+                <TextBlock x:Name="lblFieldOpen" Grid.Row="1" Grid.Column="0" Text="0" FontSize="28"/>
+                <TextBlock x:Name="lblValidMedi" Grid.Row="1" Grid.Column="1" Text="0" FontSize="28"/>
+                <TextBlock x:Name="lblSaved" Grid.Row="1" Grid.Column="2" Text="0" FontSize="28"/>
+                <TextBlock x:Name="lblNotValidMedCount" Grid.Row="1" Grid.Column="3" Text="0" FontSize="28" />
+                <TextBlock Grid.Row="1" Grid.Column="4" Text="0" FontSize="28" />
+            </Grid>
+            <Grid Grid.Row="2" Width="900" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!--Row 1-->
+                <Button x:Name="btnSafeModeToogle" Grid.Row="1" Content="Safe Mode Off" Click="SafeToggleClick" BorderThickness="0,0,0,0" Padding="5" Foreground="White" Background="Crimson" IsTabStop="False"/>
+                <Button x:Name="btnMergeDuplicate" Grid.Row="1" Grid.Column="1" Content="Merge Duplicate (Alpha)"  Margin="10,0,0,0" BorderThickness="0,0,0,0" Padding="5" Background="#FF0FBEFF" Foreground="White" Click="btnMergeDuplicate_Click" IsTabStop="False"  />
+                <Button x:Name="btnDeleteAll" Grid.Row="1" Grid.Column="2" Content="Delete All" Click="DeleAllFiedlClick"  Margin="10,0,0,0" BorderThickness="0,0,0,0" Padding="5" Background="#FFBA69F1" Foreground="White" IsTabStop="False" />
+                <Button x:Name="btnDeleteOnlyNewFounMed" Grid.Row="1" Grid.Column="3" Content="Delete New Found / Not Valid" Click="DeleAllFiedlClick"  Margin="10,0,0,0" BorderThickness="0,0,0,0" Padding="5" Background="#FFD38B35" Foreground="White" IsTabStop="False" />
+                <Button x:Name="btnEntryNewFound" Grid.Row="1" Grid.Column="4" Content="Register New Found / Not Valid (Alpha)" Click="DeleAllFiedlClick"  Margin="10,0,0,0" BorderThickness="0,0,0,0" Padding="5" Background="#FF76A059" Foreground="White" IsTabStop="False" />
+            </Grid>
+        </Grid>
+
+        <ScrollViewer  Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+            <StackPanel Margin="30,20,0,0" Name="ParentPanel">
+            </StackPanel>
+        </ScrollViewer>
+
+        <WrapPanel Grid.Row="2" Margin="0,10,0,0" >
+            <Button x:Name="n" Content="ADD NEW FIELDS" Click="N_Click" Width="140" Padding="3" BorderBrush="{x:Null}" Background="#FF4FABF7" IsTabStop="False" Foreground="#FFFFFCFC"/>
+            <Button x:Name="g" Content="(DEBUG ON CONSOLE)" Click="G_Click" Width="140" Margin="4,0,0,0" BorderBrush="{x:Null}" Background="#FF4FABF7" IsTabStop="False" Foreground="#FFFFFCFC"/>
+            <Button x:Name="C" Content="SHOW AS A BILL" Click="C_Click" Width="140"  Margin="4,0,0,0" BorderBrush="{x:Null}" Background="#FF4FABF7" IsTabStop="False" Foreground="#FFFFFCFC"/>
+            <Button x:Name="btnCloseThis" Grid.Row="1" Content="ClOSE" Width="70" Click="btnCloseThis_Click"  Margin="4,0,0,0" BorderBrush="{x:Null}" Background="#FF4FABF7" IsTabStop="False" Foreground="#FFFFFCFC"/>
+            <Button x:Name="btnMaxThis" Grid.Row="1" Content="MAXIMIZE" Width="70" Click="btnMaxThis_Click"  Margin="4,0,0,0" BorderBrush="{x:Null}" Background="#FF4FABF7" IsTabStop="False" Foreground="#FFFFFCFC"/>
+            <WrapPanel Margin="0,4,0,0" >
+                <uc:indicatorLegend Width="102" FillBrush="#FFACACAC" text="Field is Empty" Foreground="Black" />
+                <uc:indicatorLegend Width="85" FillBrush="#FF5AF986" text="Field Valid"/>
+                <uc:indicatorLegend Width="113" FillBrush="#FFFF4040" text="Field Not Valid"/>
+                <uc:indicatorLegend Width="109" FillBrush="#FFEDF71B" text="Now Hold is 0"  />
+                <uc:indicatorLegend Width="120" FillBrush="Coral" text="Field Suspended"/>
+            </WrapPanel>
+        </WrapPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="TestProject.PillControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestProject"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="btnRound" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                BorderThickness="0" BorderBrush="White" CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsPressed" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent"/>
+                            </Trigger>
+                            <Trigger  Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF3E3E81"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Border x:Name="child1" BorderThickness="1" CornerRadius="12" Background="{Binding fillColor}" ClipToBounds="True" Height="26">
+        <StackPanel MouseEnter="StackPanel_MouseEnter" Orientation="Horizontal" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,8,0">
+            <TextBlock x:Name="ttx" Foreground="{Binding foreColor}" Text="{Binding textValue}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" />
+            <Button  Click="xClose_Click"  Visibility="Visible" Style="{StaticResource btnRound}"
+                     Name="xClose"  Width="14" FontSize="13"
+                     Content="X" VerticalAlignment="Center" Foreground="{Binding Foreground, ElementName=ttx}" Background="Transparent" BorderThickness="0" HorizontalAlignment="Center"  
+                      Margin="7,0,0,0" Height="20"  />
+        </StackPanel>
+    </Border>
+</UserControl>
