@@ -20,7 +20,7 @@ namespace ProjectIFPossible.ConnectionRouter
         private const string SERVER_NAME = "localhost"; // definately don't change this.
         private const string DATABASE_NAME = "MyDb"; //don't change this
 
-        private readonly string csS = 
+        private  string csS = 
             "server =" + SERVER_NAME + ";" +
             "port = "+PORT+"; "+
             "database = " + DATABASE_NAME + ";" +
@@ -36,7 +36,7 @@ namespace ProjectIFPossible.ConnectionRouter
         
         public mySqlConnection()
         {
-            LOGIN();
+           //LOGIN(); //changed 7 june
         }
 
 
@@ -45,6 +45,7 @@ namespace ProjectIFPossible.ConnectionRouter
 
         public mySqlConnection(string userIds, string userPass)
         {
+            LOGIN(); // added 7 june;
             this.userIds = userIds;
             this.userPass = userPass;
         }
@@ -67,11 +68,12 @@ namespace ProjectIFPossible.ConnectionRouter
         {
             UANDP();
             string connectionString =
-                "server =" + SERVER_NAME + ";"+
-                "port= " + PORT + ";"+ 
+                "server =" + PORT + ";"+
+               // "port= " + PORT + ";"+ 
                 "database = " + DATABASE_NAME + ";" +
                 "uid = " + ON_ENTRY_UID + ";" +
                 "password = " + ON_ENTRY_PASSWORD + ";";
+            csS = connectionString;// changed 2 june;
             rootOnlyConnection = new MySqlConnection(connectionString);
             rootOnlyConnection.Open();
             bool i = rootOnlyConnection.Ping();
@@ -169,7 +171,7 @@ namespace ProjectIFPossible.ConnectionRouter
             string pas = "";
             string po = "";
             var col = new List<string>(2);
-            using (var rd = new StreamReader("xco.csv"))
+            using (var rd = new StreamReader("settings\\xco.csv"))
             {
                 while(!rd.EndOfStream)
                 {

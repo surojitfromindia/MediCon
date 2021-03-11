@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProjectIFPossible"
              mc:Ignorable="d" 
-             d:DesignHeight="150" Width="1010.5">
+             d:DesignHeight="150" Width="1010.5" IsTabStop="True" TabIndex="0">
     <UserControl.Resources>
         <Style TargetType="TextBlock" x:Key="midText">
             <Setter Property="FontSize" Value="12"/>
@@ -23,8 +23,9 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="80*"/>
             <ColumnDefinition Width="35*"/>
-            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="90"/>
             <ColumnDefinition Width="90"/>
             <ColumnDefinition Width="90"/>
             <ColumnDefinition Width="60"/>
@@ -39,26 +40,28 @@
         <TextBlock Grid.Column="2" Text="Entry Date"  Style="{StaticResource ResourceKey=midText}"/>
         <TextBlock Grid.Column="3" Text="Manufacturer Name"  Style="{StaticResource ResourceKey=midText}"/>
         <TextBlock Grid.Column="4" Text="Expiry Date" Style="{StaticResource ResourceKey=midText}"/>
-        <TextBlock Grid.Column="5" Text="Now Hold"  Style="{StaticResource ResourceKey=midText}"/>
-        <TextBlock Grid.Column="6" Text="On Hold"  Style="{StaticResource ResourceKey=midText}"/>
-        <TextBlock Grid.Column="7" Text="Batch"  Style="{StaticResource ResourceKey=midText}"/>
+        <TextBlock Grid.Column="5" Text="Add Now"  Style="{StaticResource ResourceKey=midText}"/>
+        <TextBlock Grid.Column="6" Text="Price"  Style="{StaticResource ResourceKey=midText}"/>
+        <TextBlock Grid.Column="7" Text="In Storage"  Style="{StaticResource ResourceKey=midText}"/>
+        <TextBlock Grid.Column="8" Text="Batch"  Style="{StaticResource ResourceKey=midText}"/>
 
 
         <Ellipse x:Name="tickValid"  Height="10" Width="10" Fill="{Binding validColor}" Grid.Row="1" Grid.Column="0" />
-        <ComboBox TextBoxBase.TextChanged="comMed_TextChanged" Name="comMed" Text="{Binding Path=medName}" Grid.Row="1" Grid.Column="1" IsEditable="True" LostFocus="comMed_LostFocus" GotFocus="comMed_GotFocus" Padding="5"/>
-        <TextBox Text="{Binding Path=entryDate}"   Padding="5" Grid.Row="1" Grid.Column="2" IsTabStop="False"/>
-        <TextBox x:Name="comMau" Text="{Binding Path=manfName}"  Padding="5" Grid.Row="1" Grid.Column="3"  IsTabStop="False"/>
-        <TextBox Name="txtExp" Padding="5" Grid.Row="1" Grid.Column="4" IsTabStop="False"/>
-        <TextBox x:Name="txtNowOnHold" Text="{Binding Path=nowHold}"  Padding="5" Grid.Row="1" Grid.Column="5" TextChanged="txtNowOnHold_TextChanged"/>
-        <TextBox Text="{Binding Path=onHold}"  Padding="5" Grid.Row="1" Grid.Column="6" IsTabStop="False" IsEnabled="False"/>
-        <TextBox Text="{Binding Path=cuurtBatc}"  x:Name="txtBatch"  Padding="5" Grid.Row="1" Grid.Column="7" IsTabStop="False" IsEnabled="False"/>
+        <ComboBox TextBoxBase.TextChanged="comMed_TextChanged" Name="comMed" Text="{Binding Path=medName}" Grid.Row="1" Grid.Column="1" IsEditable="True" LostFocus="comMed_LostFocus" GotFocus="comMed_GotFocus" Padding="5" IsTabStop="True" BorderThickness="0"/>
+        <TextBox Text="{Binding Path=entryDate}"   Padding="5" Grid.Row="1" Grid.Column="2" IsTabStop="False" BorderThickness="0"/>
+        <TextBox x:Name="comMau" Text="{Binding Path=manfName}"  Padding="5" Grid.Row="1" Grid.Column="3"  IsTabStop="False" BorderThickness="0"/>
+        <TextBox Name="txtExp" Padding="5" Grid.Row="1" Grid.Column="4" IsTabStop="False" BorderThickness="0"/>
+        <TextBox x:Name="txtNowOnHold" Text="{Binding Path=nowHold}"  Padding="5" IsTabStop="True" Grid.Row="1" Grid.Column="5" BorderThickness="0" />
+        <TextBox Text="{Binding Path=price}"  Padding="5" Grid.Row="1" Grid.Column="6" IsTabStop="True" IsEnabled="True" BorderThickness="0"/>
+        <TextBox Text="{Binding Path=onHold}"  Padding="5" Grid.Row="1" Grid.Column="7" IsTabStop="False" BorderThickness="0"/>
+        <TextBox Text="{Binding Path=cuurtBatc}"  x:Name="txtBatch"  Padding="5" Grid.Row="1" Grid.Column="8" IsTabStop="False" BorderThickness="0"/>
         <Button IsEnabled="{Binding Path=IsBtnDeleteEnable}" x:Name="btnDelete"  Margin="0,3,0,0" 
                 Padding="5" Width="60" VerticalAlignment="Center" 
-                Click="btnDelete_Click"  Grid.Column="8" Grid.Row="1" Content="Delete" Background="#FFFF3333" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0"/>
+                Click="btnDelete_Click"  Grid.Column="9" Grid.Row="1" Content="Delete" Background="#FFE45151" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0" IsTabStop="False"/>
         <Button  Margin="0,3,0,0" 
                 x:Name="btnSave" Click="btnSave_Click"
                 Padding="5" Width="60" VerticalAlignment="Center" 
-                Grid.Column="9" Grid.Row="1" Content="Update" Background="#FF0074FF" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0"/>
+                Grid.Column="10" Grid.Row="1" Content="Update" Background="#FF4FABF7" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0"/>
 
     </Grid>
 </UserControl>

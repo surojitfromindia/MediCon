@@ -1,0 +1,30 @@
+﻿<Window x:Class="ProjectIFPossible.EmptyMedicineLookUpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectIFPossible"
+        mc:Ignorable="d" Height="375" Width="764" WindowStartupLocation="CenterScreen" Icon="AppIcon.ico" ShowInTaskbar="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Right" Margin="5" Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Text="Empty Stocked / Zero Stocked Medicine" Padding="5" Foreground="#FF007ACC" FontFamily="Montserrat SemiBold" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBox x:Name="txtSearchBox" Width="171" Text="Medicine Name" Padding="5" FontFamily="Montserrat Medium" />
+                <Button x:Name="btnSearch" Click="btnSearch_Click" Content="search" Width="50" BorderThickness="0" Background="#FF007ACC" Foreground="White" Margin="0,0,5,0" FontFamily="Montserrat" Padding="5"/>
+                <Ellipse x:Name="btnCPu" Width="20" Height="20" Fill="#FF7063F0" Margin="0,0,5,0" SnapsToDevicePixels="True" MouseDown="btnCPu_MouseDown"/>
+                <Ellipse x:Name="btnCGr" Width="20" Height="20" Fill="#FF087821" Margin="0,0,5,0" MouseDown="btnCGr_MouseDown"/>
+                <Ellipse x:Name="btnCRe" Width="20" Height="20" Fill="#FF9C0F1B" Margin="0,0,5,0" MouseDown="btnCRe_MouseDown"/>
+                <Ellipse x:Name="btnCDr" Width="20" Height="20" Fill="#FF4F4F4F" Margin="0,0,5,0" MouseDown="btnCDr_MouseDown"/>
+                <Ellipse x:Name="btnCNi" Width="20" Height="20" Fill="#FF191616"  Margin="0,0,5,0" MouseDown="btnCNi_MouseDown"/>
+                <Ellipse x:Name="btnCBlue" Width="20" Height="20" Fill="#FF007ACC" MouseDown="btnCBlue_MouseDown"/>
+            </StackPanel>
+        </StackPanel>
+        <ScrollViewer x:Name="holderPanel"  VerticalScrollBarVisibility="Hidden" Grid.Row="1">
+            <WrapPanel x:Name="holderPanel2" />
+        </ScrollViewer>
+    </Grid>
+</Window>

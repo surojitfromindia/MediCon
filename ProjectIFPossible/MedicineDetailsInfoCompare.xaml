@@ -1,0 +1,78 @@
+﻿<Window x:Class="ProjectIFPossible.MedicineDetailsInfoCompare"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectIFPossible"
+        mc:Ignorable="d"
+        Title="MedicineDetailsInfoCompare" WindowStartupLocation="CenterScreen" Height="600" Width="764" MinHeight="500" Background="#FF006BB4">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="rowdef1" Height="auto"/>
+            <RowDefinition  x:Name="rowdef2" Height="auto"/>
+            <RowDefinition  x:Name="rowdef3" Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid  x:Name="Medicine1Panel" Grid.Row="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button x:Name="btnAddMed1" Content="+" Width="30" Click="btnAddMed1_Click" />
+                <TextBlock Text="Medicine 1" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox x:Name="txtFMed" Width="200" VerticalAlignment="Center" Margin="5,0,0,0" VerticalContentAlignment="Center" BorderThickness="0" Text="Bozin" Padding="4"/>
+                <Button x:Name="b1" Content="search" VerticalAlignment="Center" FontFamily="Montserrat Medium" BorderThickness="0" HorizontalAlignment="Center" FontSize="11" Height="24" Background="#FF4AB5FF" Foreground="White" Width="60" Click="b1_Click" />
+            </StackPanel>
+
+            <!--This will hold the Main Control Window-->
+
+            <ScrollViewer Grid.Row="1" x:Name="med1" Visibility="Collapsed" VerticalScrollBarVisibility="Hidden" >
+                <StackPanel x:Name="MED1" >
+                    <local:MediInfoWindowCard2/>
+                </StackPanel>
+            </ScrollViewer>
+
+        </Grid>
+        <Grid  x:Name="Medicine2Panel" Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button x:Name="btnAddMed2" Content="+" Width="30" Click="btnAddMed2_Click" />
+                <TextBlock Text="Medicine 2" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox x:Name="txtSMed" Width="200" VerticalAlignment="Center" Margin="5,0,0,0" BorderThickness="0" Text="AirTop" Padding="4"/>
+                <Button x:Name="b2" Content="search" VerticalAlignment="Center" FontFamily="Montserrat Medium" BorderThickness="0" HorizontalAlignment="Center" FontSize="11" Height="24" Background="#FF4AB5FF" Foreground="White" Width="60" Click="b2_Click" />
+
+            </StackPanel>
+
+            <!--This will hold the Main Control Window-->
+            <ScrollViewer x:Name="med2" Visibility="Collapsed" Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+                <StackPanel x:Name="MED2">
+                    <local:MediInfoWindowCard2/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid  x:Name="Medicine3Panel" Grid.Row="3" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button x:Name="btnAddMed3" Content="+" Width="30" Click="btnAddMed3_Click" />
+                <TextBlock Text="Medicine 3" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox x:Name="txtTMed" Width="200" VerticalAlignment="Center" Margin="5,0,0,0" BorderThickness="0" Text="OneMonth" Padding="4"/>
+                <Button x:Name="b3" Content="search" VerticalAlignment="Center" FontFamily="Montserrat Medium" BorderThickness="0" HorizontalAlignment="Center" FontSize="11" Height="24" Background="#FF4AB5FF" Foreground="White" Width="60" Click="b3_Click" />
+            </StackPanel>
+
+            <!--This will hold the Main Control Window-->
+            <ScrollViewer x:Name="med3" Visibility="Collapsed" Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+                <StackPanel x:Name="MED3">
+                    <local:MediInfoWindowCard2/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

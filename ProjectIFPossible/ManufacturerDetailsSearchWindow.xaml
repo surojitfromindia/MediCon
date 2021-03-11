@@ -1,0 +1,35 @@
+﻿<Window x:Class="ProjectIFPossible.ManufacturerDetailsSearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectIFPossible"
+        mc:Ignorable="d" Name="refWindow"
+        Title="ManufacturerDetailsWindow" Height="424.433" Width="864.066" Background="#FF997029" WindowStartupLocation="CenterScreen" Loaded="refWindow_Loaded">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Search Registered Companies And View Details" FontSize="20" Foreground="White"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="80*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="listBxCompanies" Grid.Row="0" Foreground="White" Background="#FFF3F3F3" BorderBrush="{x:Null}" FontFamily="Montserrat SemiBold" SelectionChanged="listBxCompanies_SelectionChanged"/>
+            <ScrollViewer  Grid.Column="1" VerticalScrollBarVisibility="Hidden">
+                <ContentPresenter x:Name="conP"/>
+            </ScrollViewer>
+        </Grid>
+       
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
+            <TextBox x:Name="txtSearch" Width="180" Padding="8" Text="" Foreground="{Binding Background, ElementName=refWindow}" FontFamily="Montserrat SemiBold" BorderThickness="0"/>
+            <Button x:Name="btnSerach" Click="btnSerach_Click" Content="Search" Height="30"  Margin="5,0,5,0" Width="70.5" BorderThickness="0" Background="#FFD4AF07" Foreground="White" Padding="2" FontFamily="Product Sans" FontSize="14"/>
+            <Button x:Name="btnClean" Click="btnClean_Click" Content="Clean" Height="30"  Margin="0,0,5,0" Width="70.5" BorderThickness="0" Background="#FFD4AF07" Foreground="White" Padding="2" FontFamily="Product Sans" FontSize="14"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

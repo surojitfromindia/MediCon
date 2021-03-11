@@ -15,14 +15,14 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
 
         private void b1_Click(object sender, RoutedEventArgs e)
         {
-            MySqlMedicineBatchEntry newBatch = new MySqlMedicineBatchEntry(n1.Text, 12);
+           /* MySqlMedicineBatchEntry newBatch = new MySqlMedicineBatchEntry(n1.Text, 12);
             try
             { newBatch.SaveAndCommit(); }
             catch (NonRegisterNameException ex)
             {
                 MessageBox.Show("Sorry Seems like a New Medicine Name");
                 Console.WriteLine(ex.StackTrace);
-            }
+            }*/
         }
     }
 }

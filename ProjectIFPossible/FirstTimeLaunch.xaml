@@ -1,0 +1,49 @@
+﻿<Window x:Class="ProjectIFPossible.FirstTimeLaunch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectIFPossible"
+        mc:Ignorable="d"
+        Title="FirstTimeLaunch" Height="310" Width="470" Background="#FFC94639" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <StackPanel>
+        <TextBlock x:Name="btnBack" Text="←" Margin="25,0,0,0" FontSize="25" Foreground="#FFC94639" MouseDown="btnBack_MouseDown" HorizontalAlignment="Left" Height="28" Background="White" ToolTip="App Exit"/>
+        <StackPanel Margin="0,20,0,20"  HorizontalAlignment="Center">
+            <TextBlock Text="Please Enter correct user name" Foreground="#FFE0E0E0" FontFamily="Product Sans" FontSize="20"/>
+            <TextBox x:Name="txtUserName" Width="320" HorizontalAlignment="Left" Padding="4" FontFamily="Montserrat SemiBold" Foreground="#FFC94639" FontSize="13" Margin="0,5,0,0" BorderThickness="0" TabIndex="0" Text="root"/>
+            <StackPanel Orientation="Horizontal" Margin="0,15
+                        ,0,0">
+                <StackPanel Margin="0,0,15,0">
+                    <TextBlock Text="Password" Foreground="#FFE0E0E0" FontFamily="Product Sans" FontSize="15" />
+                    <PasswordBox x:Name="txtPass" Width="130" HorizontalAlignment="Left" Padding="4" Margin="0,5,0,0"  Foreground="#FFC94639" FontFamily="Montserrat Medium" Background="White" BorderThickness="0" TabIndex="1" />
+                </StackPanel>
+                <StackPanel Margin="0,0,15,0">
+                    <TextBlock Text="Server" Foreground="#FFE0E0E0" FontFamily="Product Sans" FontSize="15" />
+                    <TextBox x:Name="txtServer" Width="90" HorizontalAlignment="Left" Padding="4" Margin="0,5,0,0"  Foreground="#FFC94639" FontFamily="Montserrat Medium" Background="White" BorderThickness="0" Text="localhost" TabIndex="2"  />
+                </StackPanel>
+                <StackPanel Margin="0,0,15,0">
+                    <TextBlock Text="Port" Foreground="#FFE0E0E0" FontFamily="Product Sans" FontSize="15" />
+                    <TextBox x:Name="txtPort" Width="70" HorizontalAlignment="Left" Padding="4" Margin="0,5,0,0"  Foreground="#FFC94639" FontFamily="Montserrat Medium" Background="White" BorderThickness="0" Text="3306" TabIndex="2"  />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal" Height="29" >
+                    <Button x:Name="btnConnectionTest" Content="Test" Padding="4" BorderThickness="0" Width="130" Background="#FFFF6A5B" Foreground="#FFF9F9F9" TabIndex="4" FontSize="14" IsDefault="True" Click="btnConnectionTest_Click" />
+                    <Button x:Name="btnReplace" Content="Replace &#8635; / save" Padding="4" BorderThickness="0" Margin="15,0,0,0" Width="175" Background="#FFDE5D51" Foreground="White" FontSize="14" TabIndex="5" BorderBrush="{x:Null}" Click="btnReplace_Click"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="lblvalid" Text="&#x2716;" Foreground="Yellow"/>
+                    <TextBlock x:Name="lblCreditCorrect" Text="Connection Faild, review connection infos" Margin="10,0,0,0" Foreground="White" FontFamily="Montserrat Light"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                    <TextBlock x:Name="lblvalid2" Text="&#x2716;" Foreground="Yellow"/>
+                    <TextBlock x:Name="lbldbfound" Text="Database Not found!" Margin="10,0,0,0" Foreground="White" FontFamily="Montserrat Light"/>
+                    <Button x:Name="btnCreateDB" Content="Create" Padding="2" BorderThickness="0" Margin="5,0,0,0" Width="50" Background="#FFDE5D51" Foreground="White" FontSize="11" TabIndex="5" BorderBrush="{x:Null}" Click="btnCreateDB_Click" Visibility="Hidden"/>
+
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>

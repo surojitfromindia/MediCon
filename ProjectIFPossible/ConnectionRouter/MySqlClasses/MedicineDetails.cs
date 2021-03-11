@@ -12,6 +12,7 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
         private string medicineName = "";
         private string manufactureName="";
         private int currntonHold = 0;
+        private int currntPrice = 0;
         private int currentBactc = 0;
         private int ValidPeriod = 0;
 
@@ -23,6 +24,8 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
             "select expiryDuration from mednametable where medName =@med";
         private readonly string NAME_OF_MANUFAC =
            "select manfName from mednametable where medName =@med";
+        private readonly string LAST_PRICE = "select price from latestpriceview where medname = @med ";
+
 
 
 
@@ -43,6 +46,21 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
             }
             return currentBactc;
         }
+
+        public int MED_CUR_PRICE()
+        {
+
+            MySqlCommand cmd = new MySqlCommand(LAST_PRICE, globalCon);
+            cmd.Parameters.AddWithValue("@med", medicineName);
+            var obj = cmd.ExecuteScalar();
+            if(obj!=DBNull.Value)
+            {
+                int j = Convert.ToInt16(obj);
+                currntPrice = j;
+            }
+            return currntPrice;
+        }
+
         public int MED_CUR_HOLD()
         {
             MySqlCommand cmd = new MySqlCommand(NO_OF_MEDICINE_ON_SAME_NAME_AND_STATUS_VALID, globalCon);

@@ -26,14 +26,18 @@ namespace ProjectIFPossible
         private int stocked;
         private int batch;
         private int batchExp;
+        private int price;
+
+        public event MouseButtonEventHandler detatilEve;
 
 
-        public MediListCardControl(string medName, int stocked, int batch, int batchExp , Dictionary<string, Color> tagsList)
+        public MediListCardControl(string medName, int stocked, int batch, int batchExp ,int price ,Dictionary<string, Color> tagsList)
         {
             this.medName = medName;
             this.stocked = stocked;
             this.batch = batch;
             this.batchExp = batchExp;
+            this.price = price;
             tags = tagsList;
             InitializeComponent();
             VisualDataOnControl();
@@ -46,6 +50,7 @@ namespace ProjectIFPossible
             lblStocked.Text = stocked.ToString();
             lblB.Text = batch.ToString();
             lblBEXp.Text = batchExp.ToString();
+            lblPrice.Text = price.ToString();
         }
 
 
@@ -87,7 +92,8 @@ namespace ProjectIFPossible
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            MedicineDetailsInfoWindow cd2 = new MedicineDetailsInfoWindow(medName);
+            cd2.ShowDialog();
         }
     }
 }

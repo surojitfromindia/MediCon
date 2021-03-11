@@ -20,11 +20,11 @@ namespace ProjectIFPossible
     /// </summary>
     public partial class LoginWindow : Window
     {
+        DashBoard dt;
         public LoginWindow()
         {
             InitializeComponent();
-            _ = new mySqlConnection();
-
+          
         }
 
         private void TextBlock_Click(object sender, RoutedEventArgs e)
@@ -34,17 +34,18 @@ namespace ProjectIFPossible
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string u = "surojit";//txtU.Text;
-            string p = "123@uio";// txtP.Password;                       
+            string u = txtU.Text;
+            string p = txtP.Password;                       
 
             mySqlConnection msC2 = new mySqlConnection(u,p);
             if (msC2.ValidateConnection())
             {
    
                 msC2.Connect();
-                DashBoard dt = new DashBoard();
-                dt.Owner = this;
-                dt.ShowDialog();
+                dt = new DashBoard();
+               /* dt.Owner = this;*/
+                dt.Show();
+                Close();
              
             }
 

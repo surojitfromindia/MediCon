@@ -20,35 +20,41 @@ namespace ProjectIFPossible
     /// </summary>
     public partial class CardsControl : UserControl
     {
-        SolidColorBrush bt = new SolidColorBrush(Color.FromArgb(9,241,241,241));
-        SolidColorBrush bt2 = new SolidColorBrush(Colors.Transparent);
-        
-        public CardsControl()
-        {
-            InitializeComponent();
-            DataContext = this;
-        }
- 
+        Theme currentTheme;
+        SolidColorBrush colorOnHoverEntry;
+        SolidColorBrush colorOnHoverExit = new SolidColorBrush(Colors.Transparent);
+
         public string descp { get; set; } = "Descrption goes here.";
         public string textColor { get; set; } = "red";
         public string buttonText { get; set; } = "Details";
+        public string button2Text { get; set; }
+        public Visibility b2visibility { get; set; }
         public event RoutedEventHandler detailBtnHadler;
-
-
         public event RoutedEventHandler refreshBtnHadler;
+
+        public CardsControl()
+        {
+           
+            InitializeComponent();
+            DataContext = this;
+            SetTheme(Themes.Green);
+           
+        }
+ 
+       
 
 
         /* Hover event*/
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
         {
-            gdBack.Background = bt;
-            opPanel.Visibility = Visibility.Visible;
+            gdBack.Background = colorOnHoverEntry;
+            //opPanel.Visibility = Visibility.Visible;
         }
 
         private void gdBack_MouseLeave(object sender, MouseEventArgs e)
         {
-            gdBack.Background = bt2;
-            opPanel.Visibility = Visibility.Collapsed;
+            gdBack.Background = colorOnHoverExit;
+            //opPanel.Visibility = Visibility.Collapsed;
         }
         /* end hover event*/
 
@@ -79,6 +85,31 @@ namespace ProjectIFPossible
         {
             get { return (string)GetValue(basicPropetry); }
             set { SetValue(basicPropetry, value); }
+        }
+
+        public static readonly DependencyProperty buttonColorProperty =
+           DependencyProperty.Register("ButtonColor", typeof(string), typeof(CardsControl));
+        public SolidColorBrush ButtonColor
+        {
+            get { return (SolidColorBrush)GetValue(buttonColorProperty); }
+            set { SetValue(buttonColorProperty, value); leftButton.Background = value; RightButton.Background = value; }
+        }
+
+        public static readonly DependencyProperty ControlThemeProperty = DependencyProperty.Register("ControlTheme", typeof(Theme), typeof(CardsControl));
+
+        public Theme ControlTheme
+        {
+            set { SetValue(ControlThemeProperty, value); SetTheme(value); }
+        }
+
+        private void SetTheme(Theme value)
+        {
+            currentTheme = value;
+            leftButton.Background = value.MainBodyBackColor;
+            RightButton.Background = value.MainBodyBackColor;
+            refBasic.Foreground = value.ContainerBackColor;
+            ImagG.Foreground = value.InfoBackColor;
+            colorOnHoverEntry = value.FontColor;
         }
     }
 }

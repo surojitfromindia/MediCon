@@ -1,0 +1,31 @@
+﻿<Window x:Name="window" x:Class="ProjectIFPossible.MedicineDetailsInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectIFPossible"
+        mc:Ignorable="d"
+        Title="MedicineDetailsInfoWindow" Height="530" Width="929" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Right" Margin="5" Orientation="Horizontal" Grid.Row="0">
+            <TextBox x:Name="txtSearchBox" Width="171" Text="Medicine Name" Padding="5" FontFamily="Montserrat Medium" />
+            <Button x:Name="btnSearch" Click="btnSearch_Click" Content="search" Width="50" BorderThickness="0" Background="#FF007ACC" Foreground="White" Margin="0,0,5,0" FontFamily="Montserrat" Padding="5"/>
+            <Ellipse x:Name="btnCPu" Width="20" Height="20" Fill="#FF7063F0" Margin="0,0,5,0" SnapsToDevicePixels="True" MouseDown="btnCPu_MouseDown"/>
+            <Ellipse x:Name="btnCGr" Width="20" Height="20" Fill="#FF087821" Margin="0,0,5,0" MouseDown="btnCGr_MouseDown"/>
+            <Ellipse x:Name="btnCRe" Width="20" Height="20" Fill="#FF9C0F1B" Margin="0,0,5,0" MouseDown="btnCRe_MouseDown"/>
+            <Ellipse x:Name="btnCDr" Width="20" Height="20" Fill="#FF4F4F4F" Margin="0,0,5,0" MouseDown="btnCDr_MouseDown"/>
+            <Ellipse x:Name="btnCNi" Width="20" Height="20" Fill="#FF191616"  Margin="0,0,5,0" MouseDown="btnCNi_MouseDown"/>
+            <Ellipse x:Name="btnCBlue" Width="20" Height="20" Fill="#FF007ACC" MouseDown="btnCBlue_MouseDown"/>
+
+        </StackPanel>
+        <ScrollViewer x:Name="holderPanel"  VerticalScrollBarVisibility="Hidden" Grid.Row="1">
+            <StackPanel x:Name="holderPanel2" >
+                <TextBlock Margin="15" Text="Write Medicine Name On The Search Box And Hit Search, The Result Will Be Shown Here" FontSize="22" FontFamily="Montserrat Light" TextWrapping="Wrap" Foreground="White"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

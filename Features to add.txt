@@ -1,0 +1,33 @@
+element to show in details table
+
+
+0. some features will be editable only by admin only
+1. medicine name
+2.company name
+3.button for company details
+4.name register by whom
+5. editable tags
+6. (quick reference of the medicine)
+6.1 How many in stock
+6.2 batchs
+6.3 schedule
+6.4(current price-(with the last update date)),(maximum price noted)
+7. if possible a price graph (base will be the hights price)
+8. list of medicine with same tags (at least 3 tags)
+9. (optional location text)(you have to modify the mednametable)
+
+
+
+Now Come list of batch info
+(batch number)
+(batch entry date)
+(batch expiry date // if expired make it hightlight // and make entry date 
+grey)
+(Number of medicine in this batch)
+(batch price)
+(batch Remove Button //admin only) // it will not show if (number of medicine will reduce to zero).
+(price per batch)
+(total value of this batch)
+
+
+And Fillters

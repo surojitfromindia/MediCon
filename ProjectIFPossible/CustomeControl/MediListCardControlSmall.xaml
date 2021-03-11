@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProjectIFPossible"
-             mc:Ignorable="d" 
-             Height="270" Width="210" Margin="0,0,5,5" Background="#FF1A2A40" >
+             mc:Ignorable="d" x:Name="refBack"
+             Height="250" Width="210" Margin="0,0,5,5" Background="#FF007ACC" Loaded="UserControl_Loaded"  >
     <Grid Margin="15,15,5,15" >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -13,9 +13,22 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Margin="5" Text="Name" Foreground="White" Grid.Row="0"/>
-        <TextBlock  MinHeight="40"  x:Name="lblMedicine" Margin="5,0,5,0" TextWrapping="Wrap" Grid.Row="1" Text="Remnisidin" FontSize="17" Foreground="#FFFF9C24"/>
-        <Grid Grid.Row="2" Margin="5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="5" Text="Name" Foreground="White" Grid.Column="0"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,0">
+                <TextBlock x:Name="btnSchdelue" MouseDown="btnSchdelue_MouseDown" FontSize="16" Margin="0,0,2,0" VerticalAlignment="Center" Grid.Column="1" Text="&#10010;" Foreground="Gray" HorizontalAlignment="Right"/>
+                <TextBlock x:Name="lblSchdelue" MouseDown="lblSchdelue_MouseDown" FontSize="16" VerticalAlignment="Center"  Grid.Column="1" Text="0" Foreground="Gray" HorizontalAlignment="Right" />
+                <TextBlock x:Name="lblRef" Margin="5,0,0,0" MouseDown="lblRef_MouseDown" FontSize="18" VerticalAlignment="Center"  Grid.Column="1" Text="&#8635;" Foreground="White" HorizontalAlignment="Right" Padding="0,0,0,2"/>
+
+            </StackPanel>
+            
+        </Grid>
+        <TextBlock  MinHeight="40"  x:Name="lblMedicine" Margin="5,4,0,0" TextWrapping="Wrap" Grid.Row="1" Text="Remnisidin" FontSize="12.6" Foreground="#FFF8FF66" FontFamily="Montserrat Medium" MouseDown="lblMedicine_MouseDown"/>
+        <Grid Grid.Row="2" Margin="5,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -27,24 +40,41 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel>
                     <TextBlock Text="Storage" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
-                    <TextBlock x:Name="lblStocked" Text="200" FontSize="26" Margin="0,0,20,0" Foreground="#FF61F8FF"/>
+                    <TextBlock x:Name="lblStocked" Text="200" FontSize="20" Margin="0,0,20,0" Foreground="#FFE4FEFF"/>
                 </StackPanel>
             </Grid>
             <WrapPanel Grid.Row="1" Margin="0,10,0,0">
                 <StackPanel Margin="0,0,10,0">
                     <TextBlock Text="Batch" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
-                    <TextBlock x:Name="lblB" Text="5" FontSize="20" Margin="0,0,20,0" Foreground="#FF68FF7D"/>
+                    <TextBlock x:Name="lblB" Text="5" FontSize="20" Margin="0,0,20,0" Foreground="#FFB3FFBE"/>
                 </StackPanel>
                 <StackPanel Margin="0,0,10,0">
                     <TextBlock Text="Expired(B)"  VerticalAlignment="Center" Foreground="White"/>
-                    <TextBlock x:Name="lblBEXp" Text="6" FontSize="20" Margin="0,0,20,0" Foreground="#FFFF5C5C"/>
+                    <TextBlock x:Name="lblBEXp" Text="6" FontSize="20" Margin="0,0,20,0" Foreground="#FFFF97F1"/>
                 </StackPanel>
                 <StackPanel Margin="0,0,0,0">
                     <TextBlock Text="Rating" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
-                    <TextBlock x:Name="lblRating" Text="2.5/5" FontSize="20" Margin="0,0,20,0" Foreground="#FF67FF7D"/>
+                    <TextBlock x:Name="lblRating" Text="2.5/5" FontSize="20" Foreground="#FFB0FFBA"/>
                 </StackPanel>
             </WrapPanel>
         </Grid>
-        <TextBlock x:Name="lblPrice" Grid.Row="3" Text=">$1000" Margin="5,0,0,0" FontSize="30" Foreground="#FFC3C3C3"/>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,15,0,0">
+            <TextBlock    Margin="5,3.,0,0" FontSize="25" Foreground="#FFE6E3E3" Text="&#8377;"/>
+            <TextBlock x:Name="lblPrice"  Margin="5,0,0,0" FontSize="28" Foreground="#FFF6F6F5" Text="200" Width="100"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" >
+                <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+                    <TextBlock FontSize="20"  Foreground="#FFFF2F2F" Text="&#8593;" />
+                    <TextBlock FontSize="12"  Foreground="#FF5CCBCB" Text="200" Width="13"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Visibility="Visible">
+                    <TextBlock FontSize="20" Foreground="#FF83FF68" Text="&#8595;"/>
+                    <TextBlock FontSize="12"  Foreground="#FF81FFFD" Text="200" Width="13"/>
+                </StackPanel>
+            </StackPanel>
+           
+        </StackPanel>
+        
     </Grid>
 </UserControl>

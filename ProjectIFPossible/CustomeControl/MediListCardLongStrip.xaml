@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="ProjectIFPossible.CustomeControl.MediListCardLongStrip"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectIFPossible.CustomeControl"
+             mc:Ignorable="d" Name="refBack"
+             d:DesignHeight="35.4" Background="#FF018CFF" Width="205.933" Margin="5">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="120"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0" VerticalAlignment="Center" Margin="10">
+            <TextBlock x:Name="txtHeader" Text="Bozin" Foreground="White" FontSize="15"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="btnDelAdmin" Content="Delete" Margin="5,0,5,0" Width="50" BorderThickness="0" Background="#FFF7622A" Foreground="White" Padding="3" Click="btnDelAdmin_Click"/>
+            <Button Name="btnDetail" Content="Details"  Margin="5,0,5,0" Width="50" BorderThickness="0" Background="#FFFFE25E" Foreground="#FF0E0505" Padding="2" Click="btnDetail_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

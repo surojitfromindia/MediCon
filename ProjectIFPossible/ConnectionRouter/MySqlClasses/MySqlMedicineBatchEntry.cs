@@ -18,17 +18,19 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
     {
         private readonly string MedicineName;
         private readonly int NumbOfMed;
-        public MySqlMedicineBatchEntry(string M, int N)
+        private readonly int Price;
+        public MySqlMedicineBatchEntry(string M, int N, int p)
         {
             MedicineName = M;
             NumbOfMed = N;
+            Price = p;
         }
 
 
         /* this can throw NoRecordException*/
         public bool SaveAndCommit()
         {
-            if (ValidateMedicineNameBeforeSaveing() && NumbOfMed!=0)
+            if (ValidateMedicineNameBeforeSaveing() && NumbOfMed > 0 && Price > 0)
             {
                 string procedureName = "medicineBatchInsert";
                 MySqlCommand cmd = new MySqlCommand(procedureName, globalCon)
@@ -37,6 +39,7 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
                 };
                 cmd.Parameters.AddWithValue("med_name", MedicineName);
                 cmd.Parameters.AddWithValue("no_Of_Item_To_Add", NumbOfMed);
+                cmd.Parameters.AddWithValue("med_price", Price);
                 int i = cmd.ExecuteNonQuery();
                 if (i == 1)
                     return true;

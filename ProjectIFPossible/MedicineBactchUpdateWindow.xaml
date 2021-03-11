@@ -5,23 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectIFPossible"
         xmlns:uc ="clr-namespace:ProjectIFPossible.MiniWindows"
+        x:Name="refWindow"
         mc:Ignorable="d"
-        Title="Medicine Batch Entry" Height="510" Width="1148" Background="#FF292929" Foreground="White" WindowStyle="None">
+        Title="Medicine Batch Entry" Height="510" Width="1120" Background="#FF007ACC" Foreground="White"  WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow" ResizeMode="CanResizeWithGrip" MouseLeftButtonDown="Window_MouseLeftButtonDown" ShowInTaskbar="False" >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="215"/>
+            <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="30,0,0,20">
+        <Grid Grid.Row="0" Margin="30,0,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <StackPanel>
-                <TextBlock Text="Medicine Batch Entry" FontSize="26" Margin="0,6,0,10"/>
+                <TextBlock x:Name="btnBack" Text="←" Margin="0,0,0,0" FontSize="25" Foreground="#FF292929"  HorizontalAlignment="Left" Height="28" Background="White" MouseDown="btnBack_MouseDown"/>
+                <TextBlock Text="Medicine Batch Entry" FontSize="26" Margin="0,6,0,5"/>
                 <TextBlock Text="Use this window to entry new medicine batch. you can only entry new batch here."/>
                 <TextBlock>
                      For update and see batch details click "Show Batch Detail" Button.
@@ -51,10 +54,9 @@
                 <TextBlock x:Name="lblNotValidMedCount" Grid.Row="1" Grid.Column="3" Text="0" FontSize="28" />
                 <TextBlock Grid.Row="1" Grid.Column="4" Text="0" FontSize="28" />
             </Grid>
-            <Grid Grid.Row="2" Width="900" HorizontalAlignment="Left">
+            <Grid Grid.Row="2" Width="900" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="auto"/>
@@ -66,11 +68,11 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <!--Row 1-->
-                <Button x:Name="btnSafeModeToogle" Grid.Row="1" Content="Safe Mode Off" Click="SafeToggleClick" BorderThickness="0,0,0,0" Padding="5" Foreground="White" Background="Crimson" IsTabStop="False"/>
-                <Button x:Name="btnMergeDuplicate" Grid.Row="1" Grid.Column="1" Content="Merge Duplicate (Alpha)"  Margin="10,0,0,0" BorderThickness="0,0,0,0" Padding="5" Background="#FF0FBEFF" Foreground="White" Click="btnMergeDuplicate_Click" IsTabStop="False"  />
-                <Button x:Name="btnDeleteAll" Grid.Row="1" Grid.Column="2" Content="Delete All" Click="DeleAllFiedlClick"  Margin="10,0,0,0" BorderThickness="0,0,0,0" Padding="5" Background="#FFBA69F1" Foreground="White" IsTabStop="False" />
-                <Button x:Name="btnDeleteOnlyNewFounMed" Grid.Row="1" Grid.Column="3" Content="Delete New Found / Not Valid" Click="DeleAllFiedlClick"  Margin="10,0,0,0" BorderThickness="0,0,0,0" Padding="5" Background="#FFD38B35" Foreground="White" IsTabStop="False" />
-                <Button x:Name="btnEntryNewFound" Grid.Row="1" Grid.Column="4" Content="Register New Found / Not Valid (Alpha)" Click="DeleAllFiedlClick"  Margin="10,0,0,0" BorderThickness="0,0,0,0" Padding="5" Background="#FF76A059" Foreground="White" IsTabStop="False" />
+                <Button x:Name="btnSafeModeToogle" Grid.Row="0" Content="Safe Mode Off" Click="SafeToggleClick" BorderThickness="0,0,0,0" Padding="5" Foreground="White" Background="#FFFB4E71" IsTabStop="False"/>
+                <Button x:Name="btnMergeDuplicate" Grid.Row="0" Grid.Column="1" Content="Merge Duplicate (Alpha)"  Margin="10,0,0,0" BorderThickness="0,0,0,0" Padding="5" Background="#FF0FBEFF" Foreground="White" Click="btnMergeDuplicate_Click" IsTabStop="False"  />
+                <Button x:Name="btnDeleteAll" Grid.Row="0" Grid.Column="2" Content="Delete All" Click="DeleAllFiedlClick"  Margin="10,0,0,0" BorderThickness="0,0,0,0" Padding="5" Background="#FFBA69F1" Foreground="White" IsTabStop="False" />
+                <Button x:Name="btnDeleteOnlyNewFounMed" Grid.Row="0" Grid.Column="3" Content="Delete New Found / Not Valid" Click="DeleAllFiedlClick"  Margin="10,0,0,0" BorderThickness="0,0,0,0" Padding="5" Background="#FFD38B35" Foreground="White" IsTabStop="False" />
+                <Button x:Name="btnEntryNewFound" Grid.Row="0" Grid.Column="4" Content="Register New Found / Not Valid (Alpha)" Click="DeleAllFiedlClick"  Margin="10,0,0,0" BorderThickness="0,0,0,0" Padding="5" Background="#FF76A059" Foreground="White" IsTabStop="False" />
             </Grid>
         </Grid>
 
@@ -79,18 +81,18 @@
             </StackPanel>
         </ScrollViewer>
 
-        <WrapPanel Grid.Row="2" Margin="0,10,0,0" >
+        <WrapPanel Grid.Row="2" Margin="0,5,0,0" >
             <Button x:Name="n" Content="ADD NEW FIELDS" Click="N_Click" Width="140" Padding="3" BorderBrush="{x:Null}" Background="#FF4FABF7" IsTabStop="False" Foreground="#FFFFFCFC"/>
-            <Button x:Name="g" Content="(DEBUG ON CONSOLE)" Click="G_Click" Width="140" Margin="4,0,0,0" BorderBrush="{x:Null}" Background="#FF4FABF7" IsTabStop="False" Foreground="#FFFFFCFC"/>
-            <Button x:Name="C" Content="SHOW AS A BILL" Click="C_Click" Width="140"  Margin="4,0,0,0" BorderBrush="{x:Null}" Background="#FF4FABF7" IsTabStop="False" Foreground="#FFFFFCFC"/>
-            <Button x:Name="btnCloseThis" Grid.Row="1" Content="ClOSE" Width="70" Click="btnCloseThis_Click"  Margin="4,0,0,0" BorderBrush="{x:Null}" Background="#FF4FABF7" IsTabStop="False" Foreground="#FFFFFCFC"/>
-            <Button x:Name="btnMaxThis" Grid.Row="1" Content="MAXIMIZE" Width="70" Click="btnMaxThis_Click"  Margin="4,0,0,0" BorderBrush="{x:Null}" Background="#FF4FABF7" IsTabStop="False" Foreground="#FFFFFCFC"/>
-            <WrapPanel Margin="0,4,0,0" >
-                <uc:indicatorLegend Width="102" FillBrush="#FFACACAC" text="Field is Empty" Foreground="Black" />
-                <uc:indicatorLegend Width="85" FillBrush="#FF5AF986" text="Field Valid"/>
-                <uc:indicatorLegend Width="113" FillBrush="#FFFF4040" text="Field Not Valid"/>
-                <uc:indicatorLegend Width="109" FillBrush="#FFEDF71B" text="Now Hold is 0"  />
-                <uc:indicatorLegend Width="120" FillBrush="Coral" text="Field Suspended"/>
+            <Button x:Name="g" Content="(DEBUG ON CONSOLE)" Click="G_Click" Width="140" Margin="4,0,0,0" BorderBrush="{x:Null}" Background="{Binding Background, ElementName=n}" IsTabStop="False" Foreground="#FFFFFCFC"/>
+            <Button x:Name="C" Content="SHOW AS A BILL" Click="C_Click" Width="140"  Margin="4,0,0,0" BorderBrush="{x:Null}" Background="{Binding Background, ElementName=n}" IsTabStop="False" Foreground="#FFFFFCFC"/>
+            <Button x:Name="btnCloseThis" Grid.Row="1" Content="ClOSE" Width="70" Click="btnCloseThis_Click"  Margin="4,0,0,0" BorderBrush="{x:Null}" Background="{Binding Background, ElementName=n}" IsTabStop="False" Foreground="#FFFFFCFC"/>
+            <Button x:Name="btnMaxThis" Grid.Row="1" Content="MAXIMIZE" Width="70" Click="btnMaxThis_Click"  Margin="4,0,0,0" BorderBrush="{x:Null}" Background="{Binding Background, ElementName=n}" IsTabStop="False" Foreground="#FFFFFCFC"/>
+            <WrapPanel VerticalAlignment="Center" >
+                <uc:indicatorLegend  FillBrush="#FFACACAC" text="Empty" Width="64" />
+                <uc:indicatorLegend  FillBrush="#FF5AF986" text="Valid" Width="60"/>
+                <uc:indicatorLegend  FillBrush="#FFFF4040" text="Not Valid" Width="75"/>
+                <uc:indicatorLegend  FillBrush="#FFEDF71B" text="AddNow 0" Width="84"  />
+                <uc:indicatorLegend  FillBrush="Coral" text="Suspended" Width="90"/>
             </WrapPanel>
         </WrapPanel>
     </Grid>

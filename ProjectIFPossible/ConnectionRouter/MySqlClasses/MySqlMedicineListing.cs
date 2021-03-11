@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using ProjectIFPossible.ConnectionRouter.MySqlClasses.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows.Media;
@@ -23,13 +24,14 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
         public MySqlMedicineListing()
         {
             GenerateTagMap();
-            GenerateList();
+            GenerateShortDetailsList();
         }
 
-        void GenerateList()
+        //Only Short Details
+        void GenerateShortDetailsList()
         {
 
-            MySqlCommand cmd = new MySqlCommand("select * from FullMedicineStatusView", globalCon);
+            MySqlCommand cmd = new MySqlCommand("select * from FullMedicineStatusViewAdvance", globalCon);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -37,7 +39,9 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
                 int stocked = reader.GetInt16(1);
                 int stockedExpB = reader.GetInt16(2);
                 int batchs = reader.GetInt16(3);
-                Medicine medicine = BindData(name, stocked, stockedExpB, batchs);
+                int price = reader.GetInt16(4);
+                int onSchedule = reader.GetInt16(5);
+                Medicine medicine = BindData(name, stocked, stockedExpB, batchs, price, onSchedule);
                 if (!medicines.Contains(medicine)) medicines.Add(medicine);
             }
             reader.Close();
@@ -52,32 +56,31 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
             tags.Add("Flu", tagColors[2]);
         }
 
-        Medicine BindData(string name, int stk, int sktEB, int btc)
-        {
-            Medicine medicine;
-            ThisMedicineInfos thisMedicineInfos;
-            thisMedicineInfos = new ThisMedicineInfos(btc, stk, sktEB, 1700);
-            medicine = new Medicine(name, tags, thisMedicineInfos);
-            return medicine;
-        }
+
 
         public HashSet<Medicine> GetMedicines() => medicines;
 
         public HashSet<Medicine> GetFillteredMedicine() => filtterdMedicine;
 
-        public HashSet<Medicine> FiltterMedicine(Filtter stock, Filtter batch, string medicinename)
+        public HashSet<Medicine> FiltterMedicine(Fillter stock, Fillter batch, Fillter Price, string medicinename)
         {
-            string qPrice;
+            string qStocked;
             if (stock.IsActive)
-                qPrice = $"stocked between {stock.LowValue} and {stock.HighValue}";
-            else qPrice = $"stocked between {0} and {int.MaxValue}";
+                qStocked = $"stocked between {stock.LowValue} and {stock.HighValue}";
+            else qStocked = $"stocked between {0} and {int.MaxValue}";
 
             string qBatch;
             if (batch.IsActive)
                 qBatch = $"Batch between {batch.LowValue} and {batch.HighValue}";
-            else qBatch = $"stocked between {0} and {int.MaxValue}";
+            else qBatch = $"Batch between {0} and {int.MaxValue}";
 
-            string cQuery = $"select * from FullMedicineStatusView where {qPrice} and {qBatch} and medName like'{medicinename}%' ";
+            string qPrice;
+            if (Price.IsActive)
+                qPrice = $"price between {Price.LowValue} and {Price.HighValue}";
+            else qPrice = $"price between {0} and  {int.MaxValue}";
+
+            string cQuery = $"select * from FullMedicineStatusViewAdvance " +
+                $"where {qStocked} and {qBatch} and {qPrice} and medName like'{medicinename}%' ";
             MySqlCommand cmd = new MySqlCommand(cQuery, globalCon);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -86,78 +89,27 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
                 int stocked = reader.GetInt16(1);
                 int stockedExpB = reader.GetInt16(2);
                 int batchs = reader.GetInt16(3);
-                Medicine medicine = BindData(name, stocked, stockedExpB, batchs);
+                int medPrice = reader.GetInt16(4);
+                int onSchedule = reader.GetInt16(5);
+                Medicine medicine = BindData(name, stocked, stockedExpB, batchs, medPrice, onSchedule);
                 if (!filtterdMedicine.Contains(medicine)) filtterdMedicine.Add(medicine);
             }
             reader.Close();
             return filtterdMedicine;
         }
 
-
-    }
-
-    class Medicine
-    {
-        public string name;
-        public Dictionary<string, Color> tags;
-        public ThisMedicineInfos medicineInfos;
-
-        public Medicine(string name, Dictionary<string, Color> tags, ThisMedicineInfos medicineInfos)
+        Medicine BindData(string name, int stk, int sktEB, int btc, int pri, int noOfSc)
         {
-            this.name = name;
-            this.tags = tags;
-            this.medicineInfos = medicineInfos;
-
-        }
-
-    }
-
-
-    /*
-     * Purpose of this class
-     * get infos about new medicine 
-     * as well as their past prices and current price (that is last bacth prices)
-     */
-    class ThisMedicineInfos
-    {
-        public int batchs;
-        public int currentNumber;
-        public int expiredB;
-        public int currentPrice;
-        
-        List<int> pricesList = new List<int>(5);
-        public ThisMedicineInfos(int batchs, int currentNumber, int expiredB, int currentPrice /*,List<int> pricesList*/)
-        {
-            this.batchs = batchs;
-            this.currentNumber = currentNumber;
-            this.expiredB = expiredB;
-            this.currentPrice = currentPrice;
-            //this.pricesList = pricesList;
+            Medicine medicine;
+            MedicineGroup thisMedicineInfos;
+            MedicineScheduleInfo medicineScheduleInfo;
+            thisMedicineInfos = new MedicineGroup(btc, stk, sktEB, pri);
+            medicineScheduleInfo = new MedicineScheduleInfo(name, noOfSc);
+            medicine = new Medicine(name, tags, thisMedicineInfos, medicineScheduleInfo);
+            return medicine;
         }
 
 
     }
-
-    class Filtter
-    {
-        public Filtter(int fillterLow, int filterHigh, bool isActive)
-        {
-          
-            if(filterHigh < fillterLow)
-            {
-                int dummy = fillterLow;
-                fillterLow = filterHigh;
-                filterHigh = dummy;
-            }
-            this.LowValue = fillterLow;
-            this.HighValue = filterHigh;
-            this.IsActive = isActive;
-        }
-
-        public bool IsActive { get; }
-        public int LowValue { get; }
-        public int HighValue { get; }
-    }
-    
 
 }

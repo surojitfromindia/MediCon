@@ -7,10 +7,9 @@
              mc:Ignorable="d"
              Margin="0,10,0,0"
              Padding="5"
-             d:DesignHeight="450" d:DesignWidth="800" Background="Azure" 
-             BorderBrush="HotPink" BorderThickness="1">
+             d:DesignHeight="450" d:DesignWidth="800" Background="#FF095985" BorderThickness="1">
     <Grid>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
@@ -22,10 +21,10 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Medicine Name:" FontSize="14" FontWeight="Bold"/>
-            <TextBlock Grid.Row="1" Text="{Binding Path=medName}" />
-            <TextBlock Grid.Row="2" Text="Manufacture's Name" FontSize="14"  FontWeight="Bold"/>
-            <TextBlock Grid.Row="3" Text="{Binding Path=mafName}"/>
+            <TextBlock Text="Medicine Name:" FontSize="14" FontWeight="Bold" Foreground="#FFD2F3A9"/>
+            <TextBlock Grid.Row="1" Text="{Binding Path=medName}" Foreground="White" />
+            <TextBlock Grid.Row="2" Text="Manufacture's Name" FontSize="14"  FontWeight="Bold" Foreground="#FFD2F3A9"/>
+            <TextBlock Grid.Row="3" Text="{Binding Path=mafName}" Foreground="White"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -38,10 +37,10 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Margin="0,10,0,0" Grid.Row="0" Grid.Column="0" Text="Batch Entry Date: " FontWeight="SemiBold"/>
-            <TextBlock Margin="0,10,0,0" Grid.Row="0" Grid.Column="1" Text="{Binding Path=eDate}"/>
-            <TextBlock Margin="0,10,0,0" Grid.Row="1" Grid.Column="0" Text="Batch Exper Date: " FontWeight="SemiBold"/>
-            <TextBlock Margin="0,10,0,0" Grid.Row="1" Grid.Column="1" Text="{Binding Path=expDate}"/>
+            <TextBlock Margin="0,10,0,0" Grid.Row="0" Grid.Column="0" Text="Batch Entry Date: " FontWeight="SemiBold" Foreground="#FFF9E94B"/>
+            <TextBlock Margin="0,10,0,0" Grid.Row="0" Grid.Column="1" Text="{Binding Path=eDate}" Foreground="White"/>
+            <TextBlock Margin="0,10,0,0" Grid.Row="1" Grid.Column="0" Text="Batch Exper Date: " FontWeight="SemiBold" Foreground="#FFE382FF"/>
+            <TextBlock Margin="0,10,0,0" Grid.Row="1" Grid.Column="1" Text="{Binding Path=expDate}" Foreground="White"/>
             <Grid Margin="0,10,0,0" Grid.Row="2" Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -53,19 +52,19 @@
                     <ColumnDefinition Width="156"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Previously In Storage" FontWeight="SemiBold"/>
-                <TextBlock Grid.Column="1" Text="Current Batch Count" FontWeight="SemiBold"/>
-                <TextBlock Grid.Column="2" Text="Will Be in Storage" FontWeight="SemiBold"/>
-                <TextBlock Grid.Column="3" Text="Batch" FontWeight="SemiBold"/>
+                <TextBlock Grid.Column="0" Text="Previously In Storage" FontWeight="SemiBold" Foreground="#FF3EFBBF"/>
+                <TextBlock Grid.Column="1" Text="Current Batch Count" FontWeight="SemiBold" Foreground="#FF3EFBBF"/>
+                <TextBlock Grid.Column="2" Text="Will Be in Storage" FontWeight="SemiBold" Foreground="#FF3EFBBF"/>
+                <TextBlock Grid.Column="3" Text="Batch" FontWeight="SemiBold" Foreground="#FF3EFBBF"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=wasInSotrage}" />
-                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=newEntry}"/>
-                <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Path=willInStorage}"/>
-                <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Path=curBatchCount}"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=wasInSotrage}" Foreground="White" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=newEntry}" Foreground="White"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Path=willInStorage}" Foreground="White"/>
+                <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Path=curBatchCount}" Foreground="White"/>
             </Grid>
             <StackPanel Grid.Row="3" Margin="0,10,0,10">
-                <TextBlock Text="Entry Done By: " FontWeight="Bold"/>
-                <TextBlock Text="{Binding Path=userName}"/>
+                <TextBlock Text="Entry Done By: " FontWeight="Bold" Foreground="#FFD2F3A9"/>
+                <TextBlock Text="{Binding Path=userName}" Foreground="White"/>
             </StackPanel>
         </Grid>
     </Grid>

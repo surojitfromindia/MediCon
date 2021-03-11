@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectIFPossible"
         mc:Ignorable="d"
-        Height="413.5" Width="596"  Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" >
+        Height="401.938" Width="579"  Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Background="#FF1A2A40" Title="LOG IN WINDOW" ShowInTaskbar="False" ResizeMode="NoResize" >
     <Grid Margin="0,10,0,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
@@ -18,39 +18,35 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <WrapPanel Background="Black" Grid.Row="2" Grid.ColumnSpan="3">
+        <WrapPanel Background="#FF0E1929" Grid.Row="2" Grid.ColumnSpan="3">
             <Image   Height="30" Width="30"  Stretch="Fill"/>
             <Image  Height="30" Width="30"  Stretch="Fill"/>
         </WrapPanel>
         <WrapPanel  Margin="15" Orientation="Vertical" Grid.Row="1" Grid.Column="0">
-            <TextBlock FontSize="16" Text="Log Into App."  />
-            <TextBlock FontWeight="Bold" FontSize="15" Text="Name" Margin="0,20,0,0"/>
-            <TextBox x:Name="txtU" Padding="5,5,5,5" Width="255"  Margin="0,3,0,0"/>
-            <TextBlock FontWeight="Bold" FontSize="15" Text="Password"  Margin="0,6,0,0"/>
-            <PasswordBox  x:Name="txtP" Padding="5,5,5,5" Width="255"  Margin="0,3,0,0"/>
+            <TextBlock FontSize="13" Text="User Please Input valid Id and Password" Foreground="White"  />
+            <TextBlock FontWeight="Bold" FontSize="15" Text="Name" Margin="0,20,0,0" Foreground="#FFFFD02F"/>
+            <TextBox x:Name="txtU" Padding="0,5,5,5" Width="255"  Margin="0,3,0,0" BorderThickness="0,0,0,1" Background="#FF1A2A40" BorderBrush="#FFFFD02F" Foreground="#FFE4B002" FontSize="15" Text="Apricot"/>
+            <TextBlock FontWeight="Bold" FontSize="15" Text="Password"  Margin="0,6,0,0" Foreground="#FFFFD02F"/>
+            <PasswordBox  x:Name="txtP" Padding="0,5,5,5" Width="255"  Margin="0,3,0,0" Background="#FF1A2A40" BorderThickness="0,0,0,1" BorderBrush="#FFFFD02F" Foreground="#FFE4B002" FontSize="15" Password="782"/>
 
             <StackPanel Orientation="Horizontal" >
-                <Button IsDefault="True"  Margin="0,15,0,0" Padding="7" Content="LOG IN" Width="115" HorizontalAlignment="Left" Background="White" BorderBrush="Black" Click="Button_Click"/>
-                <ComboBox Width="124" Margin="15,15,0,0" Text="Connection Type" Padding="8" SelectedIndex="0">
-                    <TextBlock Text="MySql"/>
-                    <TextBlock Text="Access"/>
-                </ComboBox>
+                <Button IsDefault="True"  Margin="0,15,0,0" Padding="7" Content="LOG IN" Width="115" HorizontalAlignment="Left" Background="#FFFFD02F" BorderBrush="Black" Click="Button_Click" Foreground="#FF3C3C3C" FontWeight="Bold" BorderThickness="0"/>
             </StackPanel>
-            <TextBlock Margin="0,10,0,0" Text="Fogoet Password? Ask Admin."  Foreground="Blue" Cursor="Hand" TextDecorations="Underline"/>
+            <TextBlock Margin="0,10,0,0" Text="Fogoet Password? Ask Admin."  Foreground="#FFC9C9C9" Cursor="Hand" TextDecorations="Underline"/>
         </WrapPanel>
 
         <WrapPanel   Margin="15" Orientation="Vertical" Grid.Row="1" Grid.Column="2">
-            <TextBlock FontSize="16" Text="New User ?"  />
-            <TextBlock FontWeight="Bold" FontSize="15" Text="Enter User name" Margin="0,20,0,0"/>
+            <TextBlock FontSize="16" Text="New User ?" Foreground="White"  />
+            <TextBlock FontWeight="Bold" FontSize="15" Text="Enter User name" Margin="0,20,0,0" Foreground="#FF919191"/>
             <TextBox Padding="5,5,5,5" Width="210"  Margin="0,3,0,0"/>
-            <TextBlock FontWeight="Bold" FontSize="15" Text="Enter Password"  Margin="0,6,0,0"/>
+            <TextBlock FontWeight="Bold" FontSize="15" Text="Enter Password"  Margin="0,6,0,0" Foreground="#FF919191"/>
             <PasswordBox Padding="5,5,5,5" Width="210"  Margin="0,3,0,0"/>
-            <TextBlock FontWeight="Bold" FontSize="15" Text="Re-enter Password"  Margin="0,6,0,0"/>
+            <TextBlock FontWeight="Bold" FontSize="15" Text="Re-enter Password"  Margin="0,6,0,0" Foreground="#FF919191"/>
             <PasswordBox Padding="5,5,5,5" Width="210"  Margin="0,3,0,0"/>
 
-            <Button  Margin="0,15,0,0" Padding="7" Content="SIgn In" Width="70" HorizontalAlignment="Left" Background="White" BorderBrush="Black"/>
+            <Button  Margin="0,15,0,0" Padding="7" Content="SIgn In" Width="120" HorizontalAlignment="Left" Background="White" BorderBrush="Black"/>
         </WrapPanel>
 
-        <TextBlock Margin="10,0,0,0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="35" Text="Welcome"/>
+        <TextBlock Margin="10,0,0,0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="35" Text="Welcome" Foreground="#FFFFD02F"/>
     </Grid>
 </Window>

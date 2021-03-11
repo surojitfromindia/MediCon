@@ -104,7 +104,8 @@ namespace ProjectIFPossible
         private void SaveItemCurrentlyOnControl(string eleName)
         {
             MedicineBatchUpdateControl childControl = (MedicineBatchUpdateControl)ControlsHolderPanel.FindName(eleName);
-            MySqlMedicineBatchEntry msmbe = new MySqlMedicineBatchEntry(childControl.medName, int.Parse(childControl.nowHold));
+            MySqlMedicineBatchEntry msmbe = new MySqlMedicineBatchEntry(childControl.medName, int.Parse(childControl.nowHold), childControl.price);
+            Console.WriteLine(childControl.price);
 
             try
             {
@@ -113,6 +114,7 @@ namespace ProjectIFPossible
                 if (isOk)
                 {
                     childControl.IsSaveButtonEanble = false;
+                    //ControlsHolderPanel.Children.Remove(childControl);
                     MessageBox.Show("Medcine Updated!", "Medicine Update Alert", MessageBoxButton.OK, MessageBoxImage.Information);
                     lblSaved.Text = (Convert.ToInt16(lblSaved.Text) + 1).ToString();
                 }
@@ -164,6 +166,7 @@ namespace ProjectIFPossible
             childControl.onHold = medDClass.MED_CUR_HOLD();
             childControl.expDate = DateTime.Now.Date.AddMonths(medDClass.MED_EXP_MONTH_DURATION());
             childControl.manfName = medDClass.MED_MANUF_NAME();
+            childControl.price = medDClass.MED_CUR_PRICE();
             UpdateAllCounters();
 
         }
@@ -209,7 +212,7 @@ namespace ProjectIFPossible
                     ctr.IsSaveButtonEanble = true;
                     validityIndicationState(ctr);
                 }
-                btnSafeModeToogle.Background = new SolidColorBrush(Colors.Crimson);
+                btnSafeModeToogle.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFB4E71"));
                 btnSafeModeToogle.Content = "Safe Mode Off";
             }
         }
@@ -331,5 +334,27 @@ namespace ProjectIFPossible
 
         }
 
+        private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void btnBack_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        public static readonly DependencyProperty ControlThemeProperty = DependencyProperty.Register("ControlTheme", typeof(Theme), typeof(MedicineBatchEntry));
+
+        public Theme ControlTheme
+        {
+            set { SetValue(ControlThemeProperty, value); SetTheme(value); }
+        }
+
+        private void SetTheme(Theme value)
+        {
+            refWindow.Background = value.MainBodyBackColor;
+            n.Background = value.ContainerBackColor;
+        }
     }
 }

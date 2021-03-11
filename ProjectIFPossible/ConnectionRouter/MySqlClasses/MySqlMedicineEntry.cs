@@ -11,15 +11,16 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
         private const string MEDCINE_MANUFACTURE_TABLE = "manufacturedetailstable"; 
         public string MediName { get; }
         public string MediManfName { get; }
+        public int price { get; }
         private string user=globalUser;
-      
-        private string date;       
-        public MySqlMedicineEntry(string medName, String medmafna, string date)
+        private string date;
+        public MySqlMedicineEntry(string medName, string medmafna, string date, int price)
         {
             MediName = medName;
             MediManfName = medmafna;
             user = globalUser;
             this.date = date;
+            this.price = price;
         }
 
         private bool IsEmpty()
@@ -44,11 +45,12 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
 
             if(validateManufactName())
             {
-                var cmd = new MySqlCommand("insert into "+MEDCINE_TABLE_NAME +" values(@mN, @mfN, @usr, @date); commit;", msc);
+                var cmd = new MySqlCommand("insert into "+MEDCINE_TABLE_NAME +" values(@mN, @mfN, @usr, @date, @price); commit;", msc);
                 cmd.Parameters.AddWithValue("@mN", MediName);
                 cmd.Parameters.AddWithValue("@mfN", MediManfName);
                 cmd.Parameters.AddWithValue("@usr", user);
                 cmd.Parameters.AddWithValue("@date", date);
+                cmd.Parameters.AddWithValue("@price", price);
                 cmd.ExecuteNonQuery();
                 return true;
             }
@@ -67,7 +69,8 @@ namespace ProjectIFPossible.ConnectionRouter.MySqlClasses
                 string mfN = mdR.GetString(1);
                 string date = mdR.GetString(2);
                 string ur = mdR.GetString(3);
-                MySqlMedicineEntry mddE = new MySqlMedicineEntry(mN, mfN, date)
+                var mPrice = mdR.GetInt16(4);
+                MySqlMedicineEntry mddE = new MySqlMedicineEntry(mN, mfN, date, mPrice)
                 {
                     user = ur
                 };

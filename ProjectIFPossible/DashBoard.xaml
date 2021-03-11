@@ -3,28 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProjectIFPossible"
-        xmlns:uc ="clr-namespace:ProjectIFPossible"
+        xmlns:uc="clr-namespace:ProjectIFPossible"
         mc:Ignorable="d"
-        Title="DashBoard" Height="639" Width="1031.15" Foreground="#FFAA950C" WindowStartupLocation="CenterScreen" >
+        Title="DashBoard" Height="650" Width="1182" Foreground="#FFAA950C" WindowStartupLocation="CenterScreen"  ResizeMode="CanResizeWithGrip" WindowState="Normal" >
 
     <Window.Resources>
         <Style x:Key="btnHover" TargetType="Button">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF323268" Offset="0"/>
-                        <GradientStop Color="#FF323268" Offset="1"/>
-                        <GradientStop Color="#FF31315D" Offset="0.5"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Foreground" Value="#FFA0CFFF"/>
+            <Setter Property="Background" Value="#FF238DD4"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="border" Background="{TemplateBinding Background}" 
-                                BorderThickness="0" BorderBrush="White" CornerRadius="0">
+                                BorderThickness="0" BorderBrush="White" CornerRadius="15" Margin="0,0,-52,0">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
 
@@ -33,7 +24,7 @@
                                 <Setter TargetName="border" Property="BorderBrush" Value="Transparent"/>
                             </Trigger>
                             <Trigger  Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF3E3E81"/>
+                                <Setter Property="Background" Value="#FFC0D62F"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -45,11 +36,12 @@
         <Style x:Key="btnRound" TargetType="Button">
             <Setter Property="Background" Value="#FFB8AF04"/>
             <Setter Property="Foreground" Value="#fff"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="border" Background="{TemplateBinding Background}" 
-                                BorderThickness="0" BorderBrush="White" CornerRadius="3">
+                                BorderThickness="0" BorderBrush="White" CornerRadius="0" Margin="-16,0,0,0">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
 
@@ -73,10 +65,11 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer Grid.Column="1"  VerticalScrollBarVisibility="Auto" Background="#FF072C6C">
+        <ScrollViewer Grid.Column="1"  VerticalScrollBarVisibility="Auto" Background="White">
             <Grid >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
@@ -86,72 +79,120 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="120"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Padding="10,0,0,0" Background="#FF072C6C">
-                        <TextBlock Text="Welcome"  FontSize="65" FontWeight="Thin" Foreground="#FFFFE645"/>
-                    </Label>
-                    <StackPanel  Grid.Column="1" Margin="5,0,15,0">
-                        <TextBlock FontSize="16" TextAlignment="Right" Text="Logged In as" FontWeight="Thin" Foreground="#FFC1AC23"/>
-                        <TextBlock x:Name="txtLogedInUser" FontSize="18" TextAlignment="Right" Text="Admin" Foreground="#FFC1AC23"/>
-                        <TextBlock FontSize="16" TextAlignment="Right" Text="Previlages" FontWeight="Thin" Foreground="#FFC1AC23"/>
-                        <TextBlock FontSize="18" TextAlignment="Right" Text="All" Foreground="#FFC1AC23"/>
+                    <StackPanel Grid.Column="0" Background="White" Orientation="Horizontal">
+                        <TextBlock Margin="10,16,0,16" Padding="8,8,0,0" FontSize="55"  Foreground="{Binding Background, ElementName=navBar}" FontFamily="Product Sans" TextWrapping="Wrap"  MinWidth="370" HorizontalAlignment="Center" VerticalAlignment="Center" Width="518"><Run Text="Welcome! Good Day "/></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="1" Margin="5,0,15,0" >
+                        <TextBlock Name="refTxt" FontSize="16" TextAlignment="Right" Text="Logged In as" FontWeight="Thin" Foreground="#FF007ACC"/>
+                        <TextBlock x:Name="txtLogedInUser" FontSize="18" TextAlignment="Right" Text="Admin" Foreground="{Binding Foreground, ElementName=refTxt}"/>
+                        <TextBlock FontSize="16" TextAlignment="Right" Text="Previlages" FontWeight="Thin" Foreground="{Binding Foreground, ElementName=refTxt}"/>
+                        <TextBlock FontSize="18" TextAlignment="Right" Text="All" Foreground="{Binding Foreground, ElementName=refTxt}"/>
                         <WrapPanel Orientation="Horizontal" FlowDirection="RightToLeft">
-                            <TextBlock x:Name="onlineStatus" Margin="0,0,10,0" Text="Online" Foreground="#FFC1AC23" />
-                            <Ellipse x:Name="Sicon"  Width="10" Height="10" Fill="#FF00A007" />
+                            <TextBlock x:Name="onlineStatus" Margin="0,0,10,0" Text="Online" Foreground="{Binding Foreground, ElementName=refTxt}" />
+                            <Ellipse x:Name="Sicon"  Width="10" Height="10" Fill="#FF14FF1E" />
                         </WrapPanel>
                     </StackPanel>
                 </Grid>
-                <WrapPanel Grid.Row="1"  Orientation="Horizontal"  Background="#FF072C6C">
+                <WrapPanel x:Name="firstLevelPanel" Grid.Row="1"  Orientation="Horizontal"  Background="White">
                     <uc:CardsControl x:Name="UCStock" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                  Height="159" Width="188" text="855" buttonText="New Entry"
-                                  detailBtnHadler="CardsControl_detailBtnHadler"
-                                  Basic="Medicine"  descp="currently in stock" Margin="20" IsTabStop="True" TabIndex="0" textColor="#FF0FDC76" Foreground="#FFEED42C"
-                                   
+                                  Height="182" Width="170" text="855" buttonText="New Entry" button2Text="View"
+                                  detailBtnHadler="UCMedicineUpdateLeftClick" refreshBtnHadler="UCMedicineUpdateRightClick"
+                                  Basic="Medicines"  descp="Add medicine to stock" Margin="20" IsTabStop="True" TabIndex="0" textColor="#FF0FDC78" Foreground="{Binding Foreground, ElementName=UCList}"
                                    />
                     <uc:CardsControl x:Name="UCMedi" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                 Height="159" Width="173" buttonText="New Entry" text="8"
-                                 detailBtnHadler="OneCard_UserControlClicked_1"
-                                 Basic="Type of Medicine" descp="currently in list" Margin="20" IsTabStop="True" TabIndex="1" Foreground="#FFEED42C" textColor="#FF0FDC76"  />
+                                 Height="182" Width="175" buttonText="Register" button2Text="Refresh" text="8"
+                                 detailBtnHadler="UCMedicineRegisterLeftClick"
+                                 Basic="Type of Medicine" descp="Register new medicine here." Margin="20" 
+                                     IsTabStop="True" TabIndex="1" 
+                                     Foreground="{Binding Foreground, ElementName=UCList}" textColor="#FF0FDC76"  />
+                    <uc:CardsControl x:Name="UCCompany" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                 Height="182" Width="175" buttonText="Register" button2Text="View" text="4"
+                                 detailBtnHadler="UCCompanyLeftButtonClick"
+                                 Basic="Registered Company" descp="Register New Companies Here." Margin="20" 
+                                     IsTabStop="True" TabIndex="1" 
+                                     Foreground="{Binding Foreground, ElementName=UCList}" textColor="#FF0FDC76" refreshBtnHadler="UCCompany_refreshBtnHadler"  />
 
-                    <uc:CardsControl x:Name="UCList" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                Height="159" Width="179"
-                                 text="Details"
-                                     detailBtnHadler="UCList_detailBtnHadler"
-                                 Basic="Mesicine List Details" descp="currenty in stock" Margin="20" IsTabStop="True" TabIndex="2" Foreground="#FFEED42C" textColor="#FF0FDC76" />
                 </WrapPanel>
-                <StackPanel Grid.Row="2" Margin="0,0,0,0"  Background="#FF072C6C">
-                    <Button HorizontalAlignment="Left" Height="30" Margin="30,0,0,10" Width="92" Click="RefreshAllField" Content="Refresh" Style="{StaticResource btnHover}" Background="#FF4E70AC" Foreground="#FFCBE2F9" >
+                <StackPanel Grid.Row="2" Margin="0,0,0,0"  Background="White">
+                    <Button x:Name="btnRefresh" HorizontalAlignment="Left" Height="30" Margin="30,0,0,10" Width="92" Click="RefreshAllField" Content="Refresh" Style="{StaticResource btnHover}"   >
                     </Button>
                 </StackPanel>
-                <WrapPanel Background="#FF153368" Orientation="Horizontal" Grid.Row="3" Grid.Column="1" >
-                    <uc:CardsControl VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                 text="238"
-                                 Basic="Stuff" descp="currently working" Margin="20" />
+                <WrapPanel x:Name="secondLevelPanel" Background="White" Orientation="Horizontal" Grid.Row="3" Grid.Column="1" >
+
+                    <uc:CardsControl x:Name="UCList" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                     Height="200" Width="195" Margin="20" IsTabStop="True" TabIndex="2"
+                                     Foreground="#FF007ACC" textColor="#FF0FDC76" 
+                                     text="List" detailBtnHadler="UCMedicineUpdateRightClick"
+                                     Basic="All Medicines Details "  buttonText="See List" b2visibility="Hidden"
+                                     descp="Only medicine stocked will shown here, for non-stock medicine see stocks review"/>
+                    <uc:CardsControl x:Name="UCCompare"  VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                     text="Compare" detailBtnHadler="UCCompare_detailBtnHadler"
+                                     Basic="Compare Medicines" descp="You can compare 2 or more medicine here." 
+                                     Margin="10" buttonText="Compare" b2visibility="Hidden" textColor="#FF0FDC76" 
+                                     Foreground="{Binding Foreground, ElementName=UCList}" Width="195" Height="200"  />
+                    <uc:CardsControl x:Name="UCExpandedMedicineDetails"  VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                     text="Search" detailBtnHadler="UCExpandedMedicineDetailsLeftClick"
+                                     Basic="View Complete Detail" descp="Complete details with per batch entry and infos. (only stocked medicines)" 
+                                     Margin="10" buttonText="Search" b2visibility="Hidden" textColor="#FF0FDC76" 
+                                     Foreground="{Binding Foreground, ElementName=UCList}" Width="195" Height="200"  />
+                    <uc:CardsControl x:Name="UCEmptyStockMedicine"  VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                     text="Empty Stock" detailBtnHadler="UCEmptyStockMedicine_detailBtnHadler"
+                                     Basic="Zero Stock Medicine" descp="Medicine which has empty stock or just freshly registerd will be show here." 
+                                     Margin="10" buttonText="See" b2visibility="Hidden" textColor="#FF0FDC76" 
+                                     Foreground="{Binding Foreground, ElementName=UCList}" Width="220" Height="200"  />
+                </WrapPanel>
+                <WrapPanel x:Name="thirdLevelPanel" Grid.Row="4">
+                    <uc:CardsControl x:Name="UCAbout"  VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="20"
+                                     text="About" detailBtnHadler="UCAbout_detailBtnHadler"
+                                     Basic="" descp="See details about this software. A detailed tuotorial is provided" 
+                                      buttonText="See" b2visibility="Hidden" textColor="#FF0FDC76" 
+                                     Foreground="{Binding Foreground, ElementName=UCList}" Width="220" Height="162.5"  />
                 </WrapPanel>
             </Grid>
         </ScrollViewer>
 
-        <Grid Grid.Column="0" x:Name="navBar"  Background="#FF2B2A2A">
+        <Grid Grid.Column="0" x:Name="navBar"  Background="#FF007ACC">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnOpenSetting" Grid.Row="1" Content="Setting" Background="#FF4F4F4F" Padding="1" BorderBrush="{x:Null}" Foreground="White" Click="btnOpenSetting_Click" BorderThickness="0" />
+            <Button x:Name="btnOpenSetting" Grid.Row="1" Content="Setting" Background="{Binding Background, ElementName=btnLogOut}" Padding="1" BorderBrush="{x:Null}" Foreground="White" Click="btnOpenSetting_Click" BorderThickness="0" />
+            <StackPanel Grid.Row="2"  Background="{Binding Background, ElementName=btnLogOut}">
+                <StackPanel x:Name="colorPanel" Orientation="Horizontal" VerticalAlignment="Center"  Height="30" HorizontalAlignment="Center" >
+                    <Ellipse x:Name="btnCGr" Width="20" Height="20" Fill="#FF087821" Margin="2,0,2,0" MouseDown="btnCGr_MouseDown" VerticalAlignment="Center" Stroke="White" StrokeThickness="2.5"/>
+                    <Ellipse x:Name="btnCRe" Width="20" Height="20" Fill="#FF9C0F1B" Margin="2,0,2,0" MouseDown="btnCRe_MouseDown" VerticalAlignment="Center" Stroke="White" StrokeThickness="2.5"/>
+                    <Ellipse x:Name="btnCDr" Width="20" Height="20" Fill="#FF4F4F4F" Margin="2,0,2,0" MouseDown="btnCDr_MouseDown" VerticalAlignment="Center" Stroke="White" StrokeThickness="2.5"/>
+                    <Ellipse x:Name="btnCNi" Width="20" Height="20" Fill="#FF191616" Margin="2,0,2,0" MouseDown="btnCNi_MouseDown" VerticalAlignment="Center" Stroke="White" StrokeThickness="2.5"/>
+                    <Ellipse x:Name="btnCPu" Width="20" Height="20" Fill="#FF7063F0" Margin="2,0,2,0" MouseDown="btnCPu_MouseDown" VerticalAlignment="Center" Stroke="White" StrokeThickness="2.5"/>
+                    <Ellipse x:Name="btnCBlu" Width="20" Height="20" Fill="#FF007ACC" Margin="2,0,2,0" MouseDown="btnCBlu_MouseDown" VerticalAlignment="Center" Stroke="White" StrokeThickness="2.5"/>
+                    <Ellipse x:Name="btnCDefal" Width="20" Height="20" Fill="White" Margin="2,0,2,0" MouseDown="btnCDefal_MouseDown" VerticalAlignment="Center" Stroke="White" StrokeThickness="2.5"/>
+
+                </StackPanel>
+            </StackPanel>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock MouseDown="TextBlock_MouseDown"  
-                               Foreground="#FFF5F9FF" FontSize="15" Padding="0,5,0,5" TextAlignment="Center">
+                               Foreground="#FFF5F9FF" FontSize="15" Padding="5,10" TextAlignment="Center">
                     <TextBlock.LayoutTransform>
                         <RotateTransform Angle="-90"/>
                     </TextBlock.LayoutTransform>
                         NavBar
                 </TextBlock>
-                <StackPanel x:Name="navBtnBar" Grid.Column="1">
-                    <Button Content="Disconnect" Click="Button_Click"/>
-                    <Button Content="Connect" Click="Button_Click_1" />
-                    <StackPanel Margin="10,60,10,0" VerticalAlignment="Center">
+                <StackPanel x:Name="navBtnBar" Grid.Column="1" Width="180" Visibility="Visible">
+                    <!--Log-out/disconnect Block-->
+                    <Button x:Name="btnLogOut" Content="Disconnect" Click="btnLogOut_Click" BorderThickness="0" Background="#FF238DD4" Foreground="White" Height="30" FontFamily="Montserrat SemiBold" FontSize="15"/>
+                    <!--Open Window Block-->
+                    <StackPanel  Margin="0,20,0,0">
+                        <TextBlock TextAlignment="Center" Text="Opened Window" Foreground="White" FontSize="15" FontFamily="Montserrat Medium" Margin="0,0,0,5"/>
+                        <StackPanel x:Name="OpenWindowNameHolder">
+                        </StackPanel>
+                    </StackPanel>
+                    <!--Login Block-->
+                    <StackPanel Margin="10,30,10,0">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -161,14 +202,15 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="Login Another Account" Width="160"/>
-                            <TextBlock Grid.Row="1" Text="User" Margin="0,10,0,0" FontSize="10"/>
-                            <TextBox Grid.Row="2" FontSize="10" Padding="3"/>
-                            <TextBlock Grid.Row="3" Text="Password" Margin="0,5,0,0" FontSize="10"/>
-                            <PasswordBox Grid.Row="4" FontSize="10" Padding="3" />
-                            <Button Grid.Row="5" Style="{StaticResource btnRound}" HorizontalAlignment="Right" Width="70"  FontSize="9" Height="20" Content="LOG-IN" Margin="0,15,0,0"/>
+                            <TextBlock Text="Log Into Another Account" Width="160" Foreground="White" FontFamily="Montserrat Medium" FontSize="15" TextWrapping="Wrap"/>
+                            <TextBlock Grid.Row="1" Text="User" Margin="0,10,0,0" FontSize="13" Foreground="White" FontFamily="Montserrat SemiBold"/>
+                            <TextBox x:Name="txtUserfromSideBar" Grid.Row="2" FontSize="13" Padding="6" Text="surojit" FontFamily="Montserrat SemiBold" Foreground="{Binding Background, ElementName=navBar}"/>
+                            <TextBlock Grid.Row="3" Text="Password" Margin="0,5,0,0" FontSize="13" Foreground="White" FontFamily="Montserrat SemiBold"/>
+                            <PasswordBox x:Name="txtPassfromSideBar" Grid.Row="4" FontSize="12" Padding="6" Password="2cehelper" Foreground="{Binding Background, ElementName=navBar}"  />
+                            <Button  x:Name="btnLoginAgain" Grid.Row="5"  Width="80" Foreground="{Binding Background, ElementName=navBar}" Height="28" Content="LOG-IN" HorizontalAlignment="Right" Margin="0,10,0,0" Click="btnLoginAgain_Click" Background="White" Padding="0" FontFamily="Montserrat ExtraBold"/>
                         </Grid>
                     </StackPanel>
+
                 </StackPanel>
             </Grid>
         </Grid>

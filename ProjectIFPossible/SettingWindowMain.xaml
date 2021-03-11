@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectIFPossible"
         mc:Ignorable="d"
-        Title="Settings" Height="620" Width="467.898">
+        Title="Settings" Height="620" Width="467.898" Foreground="White" Background="#FF302F2F">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="30*"/>
-           
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="130"/>
@@ -33,8 +33,8 @@
         <StackPanel Grid.Row="2" Grid.Column="1">
             <TextBlock Text="Choose type of database. We have Two option 1.MySql    2.Microsoft Access." TextWrapping="Wrap"/>
             <StackPanel Orientation="Vertical" Margin="0,8,0,0">
-                <RadioButton Content="MySql" GroupName="grpDataBaseType"/>
-                <RadioButton Content="Microsoft Access"  GroupName="grpDataBaseType"/>
+                <RadioButton Content="MySql" GroupName="grpDataBaseType" Foreground="#FFFF9393"/>
+                <RadioButton Content="Microsoft Access"  GroupName="grpDataBaseType" Foreground="#FFFF9393"/>
             </StackPanel>
             <TextBlock Text="*(note) feature can vary depend on database engine type" FontSize="9" Margin="0,3,0,0"/>
         </StackPanel>
@@ -42,34 +42,33 @@
         <!-- 3rd row-->
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Setting File Location"/>
         <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="1">
-            <StackPanel Orientation="Horizontal"   Height="auto">
-                <TextBox Height="20" Width="250" VerticalAlignment="Top"/>
-                <Button Margin="9,0,0,0" Content="..." VerticalAlignment="Top" Width="40"/>
+            <StackPanel Orientation="Horizontal"   Height="30">
+                <TextBox  Width="250" VerticalAlignment="Top" BorderThickness="0" Padding="5"/>
+                <Button Margin="9,0,0,0" Content="..." VerticalAlignment="Top" Width="40" Padding="5" BorderThickness="0"/>
             </StackPanel>
-            <TextBlock Foreground="Green"  Text="Valid" Grid.Column="1" FontWeight="Bold" Margin="0,5,0,0"/>
+            <TextBlock Foreground="#FF77E677"  Text="Valid" Grid.Column="1" FontWeight="Bold" Margin="0,5,0,0"/>
         </StackPanel>
 
         <TextBlock Text="Admin Option" Grid.Row="6" Grid.Column="0"/>
         <StackPanel   Grid.Row="6" Grid.Column="1">
             <TextBlock Text="Choose user"/>
-            <ComboBox  Name="comboUserType" Width="300" HorizontalAlignment="Left" DropDownClosed="extendExtraField">
+            <ComboBox  Name="comboUserType" Width="300" HorizontalAlignment="Left" DropDownClosed="extendExtraField" BorderThickness="0" Padding="5">
                 <TextBlock Text="Admin" />
-                <TextBlock Text="user 1"/>
+                <TextBlock Text="Staff"/>
             </ComboBox>
             <TextBlock Text="User Name" FontWeight="DemiBold" Margin="0,10,0,0"/>
-            <TextBox  Name="txtUserID" Text=""   Margin="0,5,0,0" Padding="5,5,5,5" Width="200" HorizontalAlignment="Left"/>
+            <TextBox  Name="txtUserID" Text=""   Margin="0,5,0,0" Padding="5,5,5,5" Width="200" HorizontalAlignment="Left" BorderThickness="0"/>
 
             <TextBlock Text="Password" FontWeight="DemiBold" Margin="0,5,0,0"/>
-            <PasswordBox Name="txtPass1" Margin="0,5,0,0" Padding="5,5,5,5" Width="200" HorizontalAlignment="Left"/>
-            
+            <PasswordBox Name="txtPass1" Margin="0,5,0,0" Padding="5,5,5,5" Width="200" HorizontalAlignment="Left" BorderThickness="0"/>
+
             <TextBlock Visibility="{Binding ElementName=txtSecondPassAdmin, Path=Visibility}" Text="Second Password"  FontWeight="DemiBold" Margin="0,5,0,0"/>
-            <PasswordBox  Name="txtSecondPassAdmin"   Visibility="Visible" Margin="0,5,0,0" Padding="5,5,5,5" Width="200" HorizontalAlignment="Left"/>
+            <PasswordBox  Name="txtSecondPassAdmin"   Visibility="Visible" Margin="0,5,0,0" Padding="5,5,5,5" Width="200" HorizontalAlignment="Left" BorderThickness="0"/>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                <Button x:Name="btnSettingMainLogin" Content="Log in" Padding="6" Width="70" HorizontalAlignment="Left" Click="btnSettingMainLogin_Click"/>
-                <Button Content="Status" Margin="10,0,0,0" Width="70"/>
+                <Button x:Name="btnSettingMainLogin" Content="Log in" Padding="6" Width="70" HorizontalAlignment="Left" Click="btnSettingMainLogin_Click" BorderThickness="0" Margin="0,5,0,0"/>
             </StackPanel>
         </StackPanel>
-        
+
 
         <StackPanel  Grid.Row="8" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom">
             <TextBlock Text="Login Status" FontWeight="Bold"/>

@@ -1,87 +1,97 @@
-﻿<Window  x:Class="ProjectIFPossible.MedicineListWindow"
+﻿<Window xmlns:ProjectIFPossible="clr-namespace:ProjectIFPossible"   x:Class="ProjectIFPossible.MedicineListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
          xmlns:PillControlClass1="clr-namespace:PillControlClass;assembly=PillControlClass"
         mc:Ignorable="d"
-        Title="MedicineListWindow" WindowStartupLocation="CenterScreen" MinWidth="1144" Height="687" Width="1159" Background="#FF303030" Foreground="White">
+        Title="SEE ALL MEDICINE" WindowStyle="SingleBorderWindow" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" MinWidth="940" Height="687" Width="1169" Background="White" Foreground="White" MouseLeftButtonDown="Window_MouseLeftButtonDown" Icon="AppIcon.ico" ShowInTaskbar="False" >
+    <Window.Resources>
+        <Style x:Key="ppB" TargetType="ProgressBar">
+            <Setter Property="Foreground" Value="#FFFFEB21"/>
+        </Style>
+
+        <Style x:Key="highValue" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FFFFEB21"/>
+        </Style>
+
+        <Style x:Key="lowValue" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF2AE8FB"/>
+        </Style>
+
+
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Margin="16,0,0,0">
+
+        <Grid Grid.Row="0" Margin="5,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80*"/>
-                <ColumnDefinition Width="256" />
+                <ColumnDefinition Width="270" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="160"/>
                     <RowDefinition Height="80*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0">
-                    <WrapPanel x:Name="NamePanel" Orientation="Vertical" Grid.Row="0" DockPanel.Dock="Left" Margin="10">
-                        <TextBlock Text="Medicine Inventory View " Foreground="#FF0EFFB2" FontSize="26" Margin="0,0,0,3"/>
-                        <TextBlock Text="Show medicine details like rating, current price, current stocks, expired medicine stocks, search by using tags." FontFamily="Tahoma"/>
-                        <TextBlock Text="Other features like search, sort is also available." FontFamily="Tahoma"/>
+                    <WrapPanel x:Name="NamePanel" Orientation="Vertical" Grid.Row="0" DockPanel.Dock="Left" Margin="0">
+                        <TextBlock Grid.Row="0" x:Name="btnBack" Text="←" Margin="0,0,0,0" FontSize="25" Foreground="White"  HorizontalAlignment="Left" Height="28" Background="{Binding Foreground, ElementName=BigHeading}" MouseDown="btnBack_MouseDown"/>
+                        <TextBlock x:Name="BigHeading" Text="Medicine Inventory View " Foreground="#FF007ACC" FontSize="28" Margin="0,0,0,3" FontFamily="Product Sans"/>
+                        <WrapPanel Width="700">
+                            <TextBlock TextWrapping="Wrap" Text="Show medicine details like rating, current price, current stocks, expired medicine stocks, search by using tags. Other features like search, sort is also available." FontFamily="Montserrat Medium" FontSize="13" TextTrimming="WordEllipsis" Foreground="{Binding Foreground, ElementName=BigHeading}"/>
+                        </WrapPanel>
                     </WrapPanel>
-                    <Grid  Margin="5,0,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="10*"/>
-                            <RowDefinition Height="13*"/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="900*"/>
-                                <ColumnDefinition Width="100*"/>
-                            </Grid.ColumnDefinitions>
-                            <WrapPanel Grid.Column="0">
-                                <TextBox x:Name="txtMedicineSearchBox" Margin="0,0,5,0" Height="24" VerticalAlignment="Center" Padding="3" Width="235" BorderBrush="{x:Null}" Background="White" Foreground="Black" BorderThickness="0" TextChanged="txtMedicineSearchBox_TextChanged"/>
-                                <Button x:Name="btnNameSearch" Margin="0,0,5,0" Content="search" Height="27" VerticalAlignment="Center"  Width="94" BorderBrush="{x:Null}" Background="#FFE53935" Foreground="White" FontSize="14" FontFamily="Microsoft YaHei UI" Click="btnNameSearch_Click"/>
-                                <Button x:Name="btnRefresh" Margin="0,0,5,0" Content="refresh" Height="27" VerticalAlignment="Center"  Width="85" BorderBrush="{x:Null}" Background="#FF616161" Foreground="White" FontSize="14" FontFamily="Microsoft YaHei UI" Click="btnRefresh_Click"/>
-                            </WrapPanel>
-                        </Grid>
-                    </Grid>
-                    <WrapPanel Grid.Row="2" Margin="5">
+                    <WrapPanel Margin="0,5,0,0">
+                        <TextBox x:Name="txtMedicineSearchBox" Margin="0,0,5,0"  VerticalAlignment="Center" Padding="4" Width="235" BorderBrush="#FF238DD4" Background="White" Foreground="{Binding Foreground, ElementName=BigHeading}" BorderThickness="1" TextChanged="txtMedicineSearchBox_TextChanged"/>
+                        <Button x:Name="btnNameSearch" Margin="0,0,5,0" Content="Search" Padding="5" VerticalAlignment="Center"  Width="70" BorderBrush="{x:Null}" Background="{Binding Foreground, ElementName=BigHeading}" Foreground="White" FontFamily="Montserrat SemiBold" Click="btnNameSearch_Click"/>
+                        <Button x:Name="btnRefresh" Margin="0,0,5,0" Content="Refresh" Padding="5" VerticalAlignment="Center"  Width="70" BorderBrush="{x:Null}" Background="#FF616161" Foreground="White" FontFamily="Montserrat SemiBold" Click="btnRefresh_Click"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="0,5,0,0" >
                         <StackPanel Orientation="Horizontal">
-                            <Button x:Name="btnSmallCard" Content="S" Width="30" BorderThickness="0" Background="#FF616161" Foreground="White" Click="btnSmallCard_Click"  />
-                            <Button x:Name="btnBigCard" Content="B" Width="30" BorderThickness="0" Background="#FFE53935" Foreground="White" Click="btnBigCard_Click"  />
+                            <Button x:Name="btnSmallCard" Content="S" Width="30" BorderThickness="0" Background="{Binding Foreground, ElementName=BigHeading}" Foreground="White" Click="btnSmallCard_Click" ToolTip="Small card for comfortable view. Less information."  />
+                            <Button x:Name="btnBigCard" Content="B" Width="30" BorderThickness="0" Background="#FF616161" Foreground="White" Click="btnBigCard_Click" ToolTip="Detail View More information."  />
                         </StackPanel>
                     </WrapPanel>
                 </StackPanel>
-                <ScrollViewer Grid.Row="1" x:Name="slist" Grid.Column="0" VerticalScrollBarVisibility="Hidden">
-                    <WrapPanel Name="ListPanel">
-                        <TextBlock    FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Sorry! No Record Found!"/>
-                    </WrapPanel>
+                <ScrollViewer Grid.Row="1" x:Name="slist" Grid.Column="0" VerticalScrollBarVisibility="Hidden" Margin="0,0,0,0">
+                    <StackPanel>
+                        <StackPanel Name="ListPanel" Visibility="Collapsed">
+                            <TextBlock   FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Sorry! No Record Found!"/>
+                        </StackPanel>
+                        <WrapPanel Name="ListPanel2" Visibility="Visible">
+                            <TextBlock   FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Sorry! No Record Found!"/>
+                        </WrapPanel>
+                    </StackPanel>
                 </ScrollViewer>
             </Grid>
-            <Grid Grid.Column="1">
+            <Grid x:Name="refOverView" Grid.Column="1" Background="#FF007ACC">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" Margin="0,0,0,0" Background="#FF383838">
+                <Grid Grid.Column="0" Margin="0,0,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto" MinHeight="241"/>
-                        <RowDefinition Height="281"/>
+                        <RowDefinition Height="auto"/>
 
                     </Grid.RowDefinitions>
-                    <StackPanel  Grid.Row="0"  Background="#FF4D4D4D">
+                    <StackPanel x:Name="OverViewHeader"  Grid.Row="0"  Background="#FF2587D8">
                         <WrapPanel HorizontalAlignment="Right" >
-                            <Button Content="Update" Width="50" BorderBrush="{x:Null}" Background="#FF707070" Foreground="#FFEAEAEA" FontSize="9" Padding="5" />
+                            <Button x:Name="btnUpdateOverView" Content="Update" Width="50" BorderBrush="{x:Null}" Background="White" Foreground="{Binding Background, ElementName=OverViewHeader}" FontSize="9" Padding="5" Click="btnUpdateOverView_Click" BorderThickness="0" />
                         </WrapPanel>
                     </StackPanel>
-                    <Grid Grid.Row="1" Background="#FF383838">
+                    <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="20*"/>
                             <RowDefinition Height="25*"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="47*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Padding="5,0,0,0"  Text="Details" Background="#FF4D4D4D" FontSize="18" FontFamily="Rockwell"/>
-                        <TextBlock Margin="5,0,5,0" Grid.Row="1" Text="Total Summary" FontSize="17" Foreground="#FF89C703"/>
+                        <TextBlock Padding="5,0,0,0"  Text="Details" Background="{Binding Foreground, ElementName=BigHeading}" FontSize="18" FontFamily="Rockwell"/>
                         <Grid Grid.Row="2" Margin="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
@@ -93,91 +103,94 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel>
-                                    <TextBlock Text="In Storage" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="In Storage" Margin="0" VerticalAlignment="Center"/>
                                     <!--TODO:this text will Change color when near current capacity-->
-                                    <TextBlock Text="200" FontSize="26" Margin="0,0,20,0" Foreground="#FFFF896F" FontFamily="Rockwell Condensed"/>
+                                    <TextBlock x:Name="lblInStorage" Text="200" FontSize="20" Margin="0" Foreground="#FFFF896F" FontFamily="Product Sans"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="1">
                                     <TextBlock Text="Current Capacity" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="15000" FontSize="26" Margin="0,0,20,0" Foreground="#FF6BE1FB" FontFamily="Rockwell Condensed"/>
+                                    <TextBlock Text="15000" FontSize="20" Margin="0,0,20,0" Foreground="#FF6BE1FB" FontFamily="Product Sans"/>
                                 </StackPanel>
                             </Grid>
                             <WrapPanel Grid.Row="1" Margin="0,10,0,0">
-                                <StackPanel Margin="0,0,0,0">
-                                    <TextBlock Text="Total Batchs" Margin="0,0,25,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="5" FontSize="20" Margin="0,0,20,0" Foreground="#FF68FF7D" FontFamily="Rockwell Condensed"/>
+                                <StackPanel Margin="0,0,15,0">
+                                    <TextBlock Text="Total Batchs" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="lblTbatch" Text="5" FontSize="20" Margin="0,0,0,0" Foreground="#FF68FF7D" FontFamily="Product Sans"/>
                                 </StackPanel>
-                                <StackPanel Margin="0,0,0,0">
+                                <StackPanel Margin="0,0,15,0">
                                     <TextBlock Text="Batchs Expired" Margin="0,0,0,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="6" FontSize="20" Margin="0,0,20,0" Foreground="#FF49FFE6" FontFamily="Rockwell Condensed"/>
+                                    <TextBlock x:Name="lblTBExp" Text="6" FontSize="20" Foreground="#FFE8F118" FontFamily="Product Sans"/>
                                 </StackPanel>
                                 <StackPanel Margin="0,0,0,0">
-                                    <TextBlock Text="Average Rating" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="2.5/5" FontSize="20" Margin="0,0,20,0" Foreground="#FF67FF7D" FontFamily="Rockwell Condensed"/>
+                                    <TextBlock Text="Average Rating" Margin="0,0,02,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="2.5/5" FontSize="20"  Foreground="#FF67FF7D" FontFamily="Product Sans"/>
                                 </StackPanel>
                             </WrapPanel>
                         </Grid>
-                        <TextBlock Grid.Row="3" Text="$350062" Margin="5,0,20,0" FontSize="30" Foreground="#FFFF4E32" FontFamily="OCR A Extended"/>
+                        <StackPanel Grid.Row="3" Orientation="Horizontal">
+                            <TextBlock Margin="5,17,0,21" VerticalAlignment="Center" Text="&#8377;" FontSize="26" FontFamily="OCR A Extended" Foreground="#FFCBBC22" Height="31" />
+                            <TextBlock VerticalAlignment="Center" x:Name="lblTStockPrice" Text="350062" Margin="5,0,20,0" FontSize="40" Foreground="#FFFFE909" FontFamily="Product Sans"/>
+                        </StackPanel>
+
                     </Grid>
-                    <StackPanel Grid.Row="2" Orientation="Vertical" Margin="5" Background="#FF383838" >
-                        <TextBlock Text="Group Ranking"/>
-                        <StackPanel Margin="5,5,0,0">
-                            <TextBlock Text="Price" Margin="0,0,0,5" Foreground="#FFF1F1F1"/>
+                    <StackPanel Grid.Row="2" Orientation="Vertical" Margin="5"  >
+                        <TextBlock Text="Group Ranking" Foreground="White"/>
+                        <StackPanel Margin="5,20,0,0">
+                            <TextBlock Text="Price" Margin="0,0,0,5" Foreground="White"/>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Highest" Width="50" Margin="5,0,0,0" Foreground="#FFBDBDBD" Padding="3"/>
+                                <TextBlock Text="Highest" Width="50" Margin="5,0,0,0" Foreground="White" Padding="0" FontFamily="Montserrat Light" FontSize="10" VerticalAlignment="Center"/>
                                 <StackPanel MaxWidth="130" Width="120">
-                                    <TextBlock Text="Ioxitan Hiblock Mi54 Zincolytekin"   FontSize="10"/>
-                                    <ProgressBar Value="40" Width="69" HorizontalAlignment="Left" Height="8" Foreground="#FFFF215E" BorderBrush="{x:Null}" />
+                                    <TextBlock x:Name="lblHPri" Text="Ioxitan Hiblock Mi54 Zincolytekin" TextTrimming="CharacterEllipsis" ToolTip="{Binding Text,ElementName=lblHPri}" FontSize="13"/>
+                                    <ProgressBar Style="{StaticResource ppB}" x:Name="prbHP" Value="80" Width="110" HorizontalAlignment="Left" Height="8" Foreground="#FFFFEB21" BorderBrush="{x:Null}" Background="{x:Null}" />
                                 </StackPanel>
-                                <TextBlock Text="$2000" Margin="5,0,0,0" Padding="5"/>
+                                <TextBlock x:Name="lblHPVal" Text="$2000" Margin="5,0,0,0" Padding="5" Style="{StaticResource highValue}"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Lowest" Width="50" Margin="5,0,0,0" Foreground="#FFBDBDBD" Padding="3" />
+                            <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                                <TextBlock Text="Lowest" Width="50" Margin="5,0,0,0" Foreground="White" Padding="0" FontFamily="Montserrat Light" FontSize="10" VerticalAlignment="Center" />
                                 <StackPanel MaxWidth="130" Width="120">
-                                    <TextBlock Text="Iotaphine 54S"  FontSize="10"/>
-                                    <ProgressBar HorizontalAlignment="Left" Value="40" Width="69" Height="8" Foreground="#FF2B60BD" BorderBrush="{x:Null}" />
+                                    <TextBlock x:Name="lblLowPric" Text="Iotaphine 54S" TextTrimming="CharacterEllipsis" ToolTip="{Binding Text,ElementName=lblLowPric}" FontSize="13"/>
+                                    <ProgressBar HorizontalAlignment="Left" Value="20" Width="110" Height="8" Foreground="#FF2AE8FB" BorderBrush="{x:Null}" Background="{x:Null}" />
                                 </StackPanel>
-                                <TextBlock Text="$20" Margin="5,0,0,0" Padding="5"/>
+                                <TextBlock x:Name="lblLPVa" Text="$20" Margin="5,0,0,0" Padding="5" Style="{StaticResource lowValue}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="5,20,0,0">
+                            <TextBlock Text="Stock" Margin="0,0,0,5" Foreground="White"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Highest" Width="50" Margin="5,0,0,0" Foreground="White" Padding="0" FontFamily="Montserrat Light" FontSize="10" VerticalAlignment="Center"/>
+                                <StackPanel MaxWidth="130" Width="120">
+                                    <TextBlock x:Name="lblHighStock" Text="Ioxitan Hiblock Mi54 Zincolytekin" TextTrimming="CharacterEllipsis" ToolTip="{Binding Text,ElementName=lblHighStock}" FontSize="13"/>
+                                    <ProgressBar Style="{StaticResource ppB}" Value="80" Width="110" HorizontalAlignment="Left" Height="8" BorderBrush="{x:Null}" Background="{x:Null}" />
+                                </StackPanel>
+                                <TextBlock x:Name="lblHSVa" Text="600" Margin="0" Padding="5" Style="{StaticResource highValue}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                                <TextBlock Text="Lowest" Width="50" Margin="5,0,0,0" Foreground="White" Padding="0" FontFamily="Montserrat Light" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <StackPanel MaxWidth="130" Width="120">
+                                    <TextBlock x:Name="lblLowStock" Text="Iotaphine 54S" TextTrimming="CharacterEllipsis" ToolTip="{Binding Text,ElementName=lblLowStock}" FontSize="13"/>
+                                    <ProgressBar HorizontalAlignment="Left" Value="20" Width="106" Height="8" Foreground="#FF2AE8FB" BorderBrush="{x:Null}" Background="{x:Null}" />
+                                </StackPanel>
+                                <TextBlock x:Name="lblLSVa" Text="12" Margin="0" Padding="5" Style="{StaticResource lowValue}"/>
 
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel Margin="5,5,0,0">
-                            <TextBlock Text="Stock" Margin="0,0,0,5" Foreground="#FFF1F1F1"/>
+                        <StackPanel Margin="5,20,0,0">
+                            <TextBlock Text="Batch" Margin="0,0,0,5" Foreground="White"/>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Highest" Width="50" Margin="5,0,0,0" Foreground="#FFBDBDBD" Padding="3"/>
+                                <TextBlock Text="Highest" Width="50" Margin="5,0,0,0" Foreground="White" Padding="0" FontFamily="Montserrat Light" FontSize="10" VerticalAlignment="Center"/>
                                 <StackPanel MaxWidth="130" Width="120">
-                                    <TextBlock Text="Ioxitan Hiblock Mi54 Zincolytekin"   FontSize="10"/>
-                                    <ProgressBar Value="40" Width="69" HorizontalAlignment="Left" Height="8" Foreground="#FFFF215E" BorderBrush="{x:Null}" />
+                                    <TextBlock x:Name="lblHighBatch" Text="Ioxitan Hiblock Mi54 Zincolytekin" TextTrimming="CharacterEllipsis" ToolTip="{Binding Text,ElementName=lblHighBatch}" FontSize="13"/>
+                                    <ProgressBar Style="{StaticResource ppB}" Value="80" Width="110" HorizontalAlignment="Left" Height="8"  BorderBrush="{x:Null}" Background="{x:Null}" />
                                 </StackPanel>
-                                <TextBlock Text="600" Margin="5,0,0,0" Padding="5"/>
+                                <TextBlock x:Name="lblHBVa" Text="15" Margin="0" Padding="5" Style="{StaticResource highValue}"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Lowest" Width="50" Margin="5,0,0,0" Foreground="#FFBDBDBD" Padding="3" />
+                            <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                                <TextBlock Text="Lowest" Width="50" Margin="5,0,0,0" Foreground="White" Padding="0" FontFamily="Montserrat Light" FontSize="10" VerticalAlignment="Center" />
                                 <StackPanel MaxWidth="130" Width="120">
-                                    <TextBlock Text="Iotaphine 54S"  FontSize="10"/>
-                                    <ProgressBar HorizontalAlignment="Left" Value="40" Width="69" Height="8" Foreground="#FF2B60BD" BorderBrush="{x:Null}" />
+                                    <TextBlock x:Name="lblLowBatch" Text="Iotaphine 54S" TextTrimming="CharacterEllipsis" ToolTip="{Binding Text,ElementName=lblLowBatch}" FontSize="13"/>
+                                    <ProgressBar HorizontalAlignment="Left" Value="20" Width="110" Height="8" Foreground="#FF2AE8FB" BorderBrush="{x:Null}" Background="{x:Null}" />
                                 </StackPanel>
-                                <TextBlock Text="12" Margin="5,0,0,0" Padding="5"/>
-
-                            </StackPanel>
-                        </StackPanel>
-                        <StackPanel Margin="5,5,0,0">
-                            <TextBlock Text="Batch" Margin="0,0,0,5" Foreground="#FFF1F1F1"/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Highest" Width="50" Margin="5,0,0,0" Foreground="#FFBDBDBD" Padding="3"/>
-                                <StackPanel MaxWidth="130" Width="120">
-                                    <TextBlock Text="Ioxitan Hiblock Mi54 Zincolytekin"   FontSize="10"/>
-                                    <ProgressBar Value="40" Width="69" HorizontalAlignment="Left" Height="8" Foreground="#FFFF215E" BorderBrush="{x:Null}" />
-                                </StackPanel>
-                                <TextBlock Text="15" Margin="5,0,0,0" Padding="5"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Lowest" Width="50" Margin="5,0,0,0" Foreground="#FFBDBDBD" Padding="3" />
-                                <StackPanel MaxWidth="130" Width="120">
-                                    <TextBlock Text="Iotaphine 54S"  FontSize="10"/>
-                                    <ProgressBar HorizontalAlignment="Left" Value="40" Width="69" Height="8" Foreground="#FF2B60BD" BorderBrush="{x:Null}" />
-                                </StackPanel>
-                                <TextBlock Text="2" Margin="5,0,0,0" Padding="5"/>
+                                <TextBlock x:Name="lblLBVa" Text="2" Margin="0" Padding="5" Style="{StaticResource lowValue}"/>
 
                             </StackPanel>
                         </StackPanel>
@@ -186,7 +199,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1" >
+        <Grid Grid.Row="1" Background="#FF085589" x:Name="fillterBackDrop">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -195,28 +208,28 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#FFEEEEEE">
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
                 <StackPanel Margin="5"  Name="panelFiltterCurrentlyActive" Orientation="Horizontal">
-                    <TextBlock Padding="2" Text="Filters (Active)" Foreground="Black" FontSize="15" Width="105"/>
+                    <TextBlock x:Name="fillterColor" Padding="3.4" Text="Filters (Active)" Foreground="White" FontSize="13" Width="90" />
                     <PillControlClass1:PillControl x:Name="pillPrice" fillColor="#FF00ACC1" textValue="Price"  foreColor="White" Width="80" Visibility="Collapsed"/>
                     <PillControlClass1:PillControl x:Name="pillBatch" fillColor="#FFEA4874" textValue="Batch"  foreColor="White" Width="80" Visibility="Collapsed"/>
                     <PillControlClass1:PillControl x:Name="pillRating" fillColor="#FF2979FF" textValue="Rating"  foreColor="White" Width="80" Visibility="Collapsed"/>
                     <PillControlClass1:PillControl x:Name="pillStock"   fillColor="#FFAB47BC" textValue="Stock"  foreColor="White" Width="75" Visibility="Collapsed"/>
-                    <TextBlock Margin="7,0,0,0" Padding="2" Text="Results Found" Foreground="Black" FontSize="15" Width="103"/>
+                    <TextBlock Margin="7,0,0,0" Padding="3.4" Text="Results Found" Foreground="{Binding Foreground, ElementName=fillterColor}" FontSize="13" Width="90"/>
                     <WrapPanel Name="panel2"/>
                 </StackPanel>
             </StackPanel>
-            <Button HorizontalAlignment="Right" x:Name="btnDebug" Click="btnDebug_Click" Content="More Option" Width="111"  Grid.Column="1" Background="#FFEEEEEE" Foreground="#FF5F5F5F" Padding="0" BorderThickness="0" Margin="5,5,10,5" FontWeight="Bold"/>
-            <StackPanel  x:Name="filterPanel" Visibility="Visible" Grid.Row="1" Grid.ColumnSpan="2" Background="#FFEEEEEE">
+            <Button HorizontalAlignment="Right" x:Name="btnDebug" Click="btnDebug_Click" Content="More Option" Width="111"  Grid.Column="1" Background="{x:Null}" Foreground="White" Padding="0" BorderThickness="0" Margin="5,5,10,5" FontWeight="Bold"/>
+            <StackPanel  x:Name="filterPanel" Visibility="Collapsed" Grid.Row="1" Grid.ColumnSpan="2">
                 <WrapPanel Margin="5,7,5,15">
                     <StackPanel Orientation="Vertical" Margin="0,0,5,0">
                         <StackPanel Orientation="Horizontal">
                             <CheckBox x:Name="chkPrice" IsChecked="False" Click="chkPrice_Click"/>
-                            <TextBlock Text="PRICE" Foreground="#FF1D1D1D"/>
+                            <TextBlock Text="PRICE" Foreground="{Binding Foreground, ElementName=fillterColor}"/>
                         </StackPanel>
                         <StackPanel x:Name="panelPrice" Orientation="Horizontal" IsEnabled="False">
-                            <TextBox x:Name="txtChkPriceLow" Width="100" Padding="5" Text="0"/>
-                            <TextBlock Padding="5" Text="&lt;" Foreground="Black"/>
+                            <TextBox x:Name="txtChkPriceLow" Width="100" Padding="5" Text="0" Background="White"/>
+                            <TextBlock Padding="5" Text="&lt;" Foreground="White"/>
                             <TextBox x:Name="txtChkPriceHigh" Width="100" Padding="5" Text="10000"/>
                         </StackPanel>
                     </StackPanel>
@@ -224,11 +237,11 @@
                     <StackPanel Orientation="Vertical" Margin="0,0,5,0">
                         <StackPanel Orientation="Horizontal">
                             <CheckBox x:Name="chkBatch"  IsChecked="False" Click="chkBatch_Click"/>
-                            <TextBlock Text="BATCHS" Foreground="#FF1D1D1D"/>
+                            <TextBlock Text="BATCHS" Foreground="{Binding Foreground, ElementName=fillterColor}"/>
                         </StackPanel>
                         <StackPanel x:Name="panelBatch" Orientation="Horizontal" IsEnabled="False" >
                             <TextBox x:Name="txtChkBatchLow" Text="0" Width="45" Padding="5"/>
-                            <TextBlock Padding="5" Text="&lt;" Foreground="Black"/>
+                            <TextBlock Padding="5" Text="&lt;" Foreground="White"/>
                             <TextBox x:Name="txtChkBatchHigh" Width="45" Padding="5" Text="100"/>
                         </StackPanel>
                     </StackPanel>
@@ -236,11 +249,11 @@
                     <StackPanel Orientation="Vertical" Margin="0,0,5,0">
                         <StackPanel Orientation="Horizontal">
                             <CheckBox x:Name="chkRating"  IsChecked="False" Click="chkRating_Click"/>
-                            <TextBlock Text="Rating" Foreground="#FF1D1D1D"/>
+                            <TextBlock Text="Rating" Foreground="{Binding Foreground, ElementName=fillterColor}"/>
                         </StackPanel>
                         <StackPanel x:Name="panelRating" Orientation="Horizontal" IsEnabled="False">
                             <TextBox x:Name="txtChkRatingLow" Text="0" Width="45" Padding="5"/>
-                            <TextBlock Padding="5" Text="&lt;" Foreground="Black"/>
+                            <TextBlock Padding="5" Text="&lt;" Foreground="White"/>
                             <TextBox x:Name="txtChkRatingHigh" Width="45" Padding="5" Text="5"/>
                         </StackPanel>
                     </StackPanel>
@@ -248,7 +261,7 @@
                     <StackPanel Orientation="Vertical" Margin="0,0,5,0">
                         <StackPanel Orientation="Horizontal">
                             <CheckBox x:Name="chkStocked"  IsChecked="False" Click="chkStocked_Click"/>
-                            <TextBlock Text="STOCKED" Foreground="#FF1D1D1D"/>
+                            <TextBlock Text="STOCKED" Foreground="{Binding Foreground, ElementName=fillterColor}"/>
                         </StackPanel>
                         <StackPanel x:Name="panelStock" Orientation="Horizontal" IsEnabled="False">
                             <TextBox x:Name="txtChkStockedLow" Text="10" Width="80" Padding="5"/>
@@ -256,8 +269,8 @@
                             <TextBox x:Name="txtChkStockdeHigh" Width="80" Padding="5" Text="500"/>
                         </StackPanel>
                     </StackPanel>
-                    <Button x:Name="btnApplyFiltter" Content="Apply" VerticalAlignment="Center" Height="28" Width="80" Margin="15,15,0,0" Background="#FF37474F" Foreground="#FFFFFDFD" Click="btnApplyFiltter_Click"/>
-                    <Button x:Name="btnCleanFiltter" Content="Clean" VerticalAlignment="Center" Height="28" Width="80" Margin="6,15,0,0" Background="#FF37474F" Foreground="#FFFFFDFD" Click="btnCleanFiltter_Click"/>
+                    <Button x:Name="btnApplyFiltter" Content="Apply" VerticalAlignment="Center" Height="28" Width="80" Margin="15,15,0,0" Background="{Binding Background, ElementName=refOverView}" Foreground="#FFFFFDFD" Click="btnApplyFiltter_Click" BorderThickness="0"/>
+                    <Button x:Name="btnCleanFiltter" Content="Clean" VerticalAlignment="Center" Height="28" Width="80" Margin="6,15,0,0" Background="{Binding Background, ElementName=btnApplyFiltter}" Foreground="#FFFFFDFD" Click="btnCleanFiltter_Click" BorderThickness="0"/>
                 </WrapPanel>
             </StackPanel>
         </Grid>

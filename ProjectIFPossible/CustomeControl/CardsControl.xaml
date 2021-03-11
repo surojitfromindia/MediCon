@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProjectIFPossible"
               mc:Ignorable="d" 
-             d:DesignHeight="180" d:DesignWidth="140"
+             d:DesignHeight="185" d:DesignWidth="170"
              MinHeight="126" MinWidth="102" IsTabStop="True" TabIndex="0">
     <UserControl.Resources>
         <Style x:Key="btnHover" TargetType="Button">
@@ -16,7 +16,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="border" Background="{TemplateBinding Background}" 
-                                BorderThickness="0" BorderBrush="White" CornerRadius="0">
+                                BorderThickness="0" BorderBrush="White" CornerRadius="12">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
 
@@ -33,24 +33,24 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    
+
     <Grid x:Name="gdBack" MouseEnter="Grid_MouseEnter" MouseLeave="gdBack_MouseLeave">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="50*"/>
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <TextBlock x:Name="ImagG" Text="{Binding text, Mode=OneWay}" Foreground="{Binding textColor}" FontSize="35" Grid.Row="0" Width="Auto" Height="{Binding Width, ElementName=ImagG}" 
                 Padding="5,5,0,0" HorizontalAlignment="Left" />
         <StackPanel Grid.Row="1">
-            <TextBlock  Text="{Binding Basic}"  Padding="10,3,0,3" FontSize="17"/>
-            <TextBlock  Text="{Binding descp}" FontSize="12" Padding="10,1,7,10" 
-                        TextWrapping="Wrap" Foreground="#FF747474" />
+            <TextBlock Name="refBasic"  Text="{Binding Basic}"  Padding="9,3,0,3" FontSize="17"/>
+            <TextBlock   Text="{Binding descp}" FontSize="12" Padding="10,1,7,10" 
+                        TextWrapping="Wrap" Foreground="#FF7A7979" />
         </StackPanel>
-        <WrapPanel Name="opPanel" Grid.Row="2" Width="auto" Margin="10" Visibility="Collapsed">
-            <Button Height="27" Click="detail_btn_Click" Style="{StaticResource btnHover}" Width="80"  Padding="6" Content="{Binding buttonText}"/>
-            <Button Height="27" Width="60" Style="{StaticResource btnHover}"   Click="refresh_btn_click"  Margin="5,0,0,0" Content="Refresh"/>
-        </WrapPanel>
+        <StackPanel Orientation="Horizontal" Name="opPanel" Grid.Row="2"  Margin="10" Visibility="Visible">
+            <Button Height="27" Click="detail_btn_Click" Style="{StaticResource btnHover}" Width="80"  Padding="6" Content="{Binding buttonText}" Background="#FF238DD4" Foreground="White" x:Name="leftButton"/>
+            <Button  Height="27" Width="60" Style="{StaticResource btnHover}"   Click="refresh_btn_click"  Margin="5,0,0,0" Content="{Binding button2Text}" Background="#FF238DD4" Foreground="White" Visibility="{Binding b2visibility}" x:Name="RightButton"/>
+        </StackPanel>
     </Grid>
-    
+
 </UserControl>

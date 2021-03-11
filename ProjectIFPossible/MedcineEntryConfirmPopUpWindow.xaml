@@ -24,7 +24,7 @@
         <StackPanel Margin="10">
             <TextBlock Text="Enter safe password for Continue." TextAlignment="Center" Margin="10"/>
             <TextBox TextChanged="TxtBox1_TextChanged" x:Name="txtBox1" Width="140" Margin="0,10" Padding="5" />
-            <TextBlock Margin="0,0,0,10" Visibility="Collapsed" x:Name="txterror" Text="wrong! try again." Foreground="OrangeRed" TextAlignment="Center"/>
+            <TextBlock Margin="0,0,0,10" Visibility="Collapsed" x:Name="txterror" Text="wrong! try again." Foreground="#FF5D5D5D" TextAlignment="Center" FontSize="15"/>
             <Button Padding="5" Width="70" Content="save" HorizontalAlignment="Center" Click="Button_Click"/>
         </StackPanel>
     </Grid>

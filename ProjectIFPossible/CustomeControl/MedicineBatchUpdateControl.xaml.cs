@@ -109,6 +109,13 @@ namespace ProjectIFPossible
             get { return (int)GetValue(OnHoldProperty); }
         }
 
+        public static readonly DependencyProperty priceProperty =
+           DependencyProperty.Register("price", typeof(int), typeof(MedicineBatchUpdateControl));
+        public int price
+        {
+            set { SetValue(priceProperty, value); }
+            get { return (int)GetValue(priceProperty); }
+        }
 
 
         public static readonly DependencyProperty expiDateProeperty =
@@ -145,10 +152,7 @@ namespace ProjectIFPossible
             Foreground = new SolidColorBrush(Colors.Orange);
         }
 
-        private void txtNowOnHold_TextChanged(object sender, TextChangedEventArgs e)
-        {
-           
-        }
+        
 
 
     }

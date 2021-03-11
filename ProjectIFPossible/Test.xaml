@@ -1,0 +1,17 @@
+﻿<Window x:Class="ProjectIFPossible.Test"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectIFPossible"
+        mc:Ignorable="d"
+        Title="Test" Height="257" Width="354">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="115*"/>
+            <RowDefinition Height="111*"/>
+        </Grid.RowDefinitions>
+        <Button Content="Check" Click="Button_Click" Grid.Row="0" />
+        <TextBlock Text="Check" Name="something" Grid.Row="1" />
+    </Grid>
+</Window>
